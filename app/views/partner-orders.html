@@ -1,0 +1,25 @@
+<!-- ===== SCREEN: PARTNER ORDERS ===== -->
+<div id="screen-partner-orders" class="screen">
+  <div class="container container-profile">
+
+    <!-- Header -->
+    <div class="profile-header-bar">
+      <span class="back-arrow" onclick="closePartnerOrders()" title="Regresar">&#8592;</span>
+      <h1 class="profile-title">Pedidos</h1>
+    </div>
+
+    <!-- Tab Filters -->
+    <div class="po-tabs">
+      <button class="po-tab active" id="po-tab-recibidos" onclick="filterPartnerOrders('recibidos')">Recibidos</button>
+      <button class="po-tab" id="po-tab-completados" onclick="filterPartnerOrders('completados')">Completados</button>
+      <button class="po-tab" id="po-tab-cancelados" onclick="filterPartnerOrders('cancelados')">Cancelados</button>
+    </div>
+
+    <!-- Orders List -->
+    <div id="po-orders-list">
+      <div class="loading">Cargando pedidos...</div>
+    </div>
+
+    <div style="height: 30px;"></div>
+  </div>
+</div>

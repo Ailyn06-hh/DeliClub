@@ -35,8 +35,8 @@ async function loadViews() {
     'views/reservations.html',
     'views/user-reservations.html',
     'views/restaurant-details.html',
-    'views/reservaciones-clicli.html',
-    'views/menu-activo.html'
+    'views/partner-orders.html'
+
   ];
   
   for (const file of viewFiles) {
@@ -61,10 +61,10 @@ import { createCampaign, fetchCampaigns, donate } from './solana.js';
 import { renderRestaurantDashboard, showTrendsModal, closeTrendsModal } from './restaurant-dashboard.js';
 import { openSucursales, backToRestaurantDashboard, searchSucursales, createNewSucursal } from './sucursales.js';
 import { openCrearSucursal, submitNuevaSucursal } from './crear-sucursal.js';
-import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCalNext, confirmLogout, openEditProfile, closeEditProfile, saveProfileChanges, openReservationsList, backToProfile } from './profile.js';
+import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCalNext, confirmLogout, openEditProfile, closeEditProfile, saveProfileChanges, openReservationsList, backToProfile, toggleAllPurchases } from './profile.js';
 import { openReservations, resChangeQty, resCalRender, resCalPrev, resCalNext, resSelectDate, confirmReservation } from './reservations.js';
 import { renderRestaurantDetails, saveRestaurantSchedule } from './restaurant-details.js';
-import { openReservacionesClicli } from './reservaciones-clicli.js';
+import { openPartnerOrders, closePartnerOrders, filterPartnerOrders, acceptOrder, rejectOrder } from './partner-orders.js';
 
 // Restaurant Details logic
 export function openRestaurantDetails(id) {
@@ -75,14 +75,6 @@ export function openRestaurantDetails(id) {
 }
 export function backToSucursales() {
   showScreen('screen-sucursales');
-}
-
-// Menu Activo Logic
-export function openMenuActivo() {
-  showScreen('screen-menu-activo');
-}
-export function backToRestaurantDetails() {
-  showScreen('screen-restaurant-details');
 }
 
 
@@ -165,12 +157,15 @@ window.openCrearSucursal = openCrearSucursal;
 window.submitNuevaSucursal = submitNuevaSucursal;
 window.openReservationsList = openReservationsList;
 window.backToProfile = backToProfile;
+window.toggleAllPurchases = toggleAllPurchases;
 window.openRestaurantDetails = openRestaurantDetails;
 window.backToSucursales = backToSucursales;
 window.saveRestaurantSchedule = saveRestaurantSchedule;
-window.openReservacionesClicli = openReservacionesClicli;
-window.openMenuActivo = openMenuActivo;
-window.backToRestaurantDetails = backToRestaurantDetails;
+window.openPartnerOrders = openPartnerOrders;
+window.closePartnerOrders = closePartnerOrders;
+window.filterPartnerOrders = filterPartnerOrders;
+window.acceptOrder = acceptOrder;
+window.rejectOrder = rejectOrder;
 
 
 window.openReservations = openReservations;

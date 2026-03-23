@@ -331,9 +331,54 @@ app.get('/api/orders', async (req, res) => {
   if (userId && role === 'Cliente') {
     orders = orders.filter(o => o.clientId === userId);
   } else if (userId && role === 'Partner') {
-    orders = orders.filter(o => o.restaurantId === userId);
+    // Return orders for ALL restaurants owned by this partner
+    const myRestaurants = db.data.restaurants.filter(r => r.ownerId === userId).map(r => r.id);
+    orders = orders.filter(o => myRestaurants.includes(o.restaurantId));
   }
   res.json(orders);
+});
+
+// --- UPDATE ORDER STATUS (accept/reject) ---
+app.put('/api/orders/:id/status', async (req, res) => {
+  const { status } = req.body;
+  if (!status || !['accepted', 'rejected'].includes(status)) {
+    return res.status(400).json({ error: 'Status debe ser accepted o rejected' });
+  }
+
+  await db.read();
+  const order = db.data.orders.find(o => o.id === req.params.id);
+  if (!order) return res.status(404).json({ error: 'Pedido no encontrado' });
+
+  order.status = status;
+
+  // If rejected, refund the total as delipoints (soles) to the client
+  if (status === 'rejected') {
+    const client = db.data.users.find(u => u.id === order.clientId);
+    if (client) {
+      const refund = order.totalMXN || order.total || 0;
+      client.delipoints = (client.delipoints || 0) + refund;
+      order.refundedAmount = refund;
+    }
+  }
+
+  await db.write();
+  res.json({ success: true, order });
+});
+
+// --- GET USER BY ID ---
+app.get('/api/users/:id', async (req, res) => {
+  await db.read();
+  const user = db.data.users.find(u => u.id === req.params.id);
+  if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
+  res.json({
+    id: user.id,
+    name: user.name,
+    type: user.type,
+    phone: user.phone || '',
+    email: user.email || '',
+    avatar: user.avatar || '',
+    bio: user.bio || ''
+  });
 });
 
 // --- START ---
