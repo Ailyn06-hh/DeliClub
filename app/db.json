@@ -102,6 +102,32 @@
       "wallet": "2Mj9M3RPq1NyQwx5CPmVEUGY3bVt8bpDiU6ZsmQrMe8m",
       "phone": "828282",
       "email": "jksdhsd"
+          "id": "1774202465883",
+      "name": "Hanny",
+      "type": "Cliente",
+      "password": "hanny",
+      "wallet": "9nEXZ7wYQN6BSxjPFUk74j6TYfp1LLFmM2j3aK5BZ9yA",
+      "phone": "449 32423423423423",
+      "email": "hanny@gmail.com"
+    },
+    {
+      "id": "1774242403733",
+      "name": "Leon",
+      "type": "Cliente",
+      "password": "leon",
+      "wallet": "9nEXZ7wYQN6BSxjPFUk74j6TYfp1LLFmM2j3aK5BZ9yA",
+      "phone": "123455",
+      "email": "leon@gmail.com"
+    },
+    {
+      "id": "1774245349518",
+      "name": "La piazza",
+      "type": "Partner",
+      "password": "la piazza",
+      "wallet": "BKibDkcRq7DKHrsXMJ2KkF7WMmSPAxeyq9eci2q26hd6",
+      "rfc": "sdfasdf",
+      "address": "asdsad",
+      "foodCategory": "asdfad"
     }
   ],
   "restaurants": [

@@ -27,7 +27,8 @@ async function loadViews() {
     'views/login.html',
     'views/register-user.html',
     'views/register-restaurant.html',
-    'views/dashboard.html'
+    'views/dashboard.html',
+    'views/profile.html'
   ];
   
   for (const file of viewFiles) {
@@ -49,6 +50,7 @@ import { addToCart, removeFromCart, updateCartUI, showCart, payWithSOL, clearCar
 import { renderDiscovery, viewMenu, viewCategory, showAddedBadge, filterMenuItems, filterByCategory, searchRestaurants, backToDiscovery } from './discovery.js';
 import { renderSchedule, syncSchedule, addCategory, addItem, renderPartnerMenu, savePartnerInfo, setPartnerMenu, partnerMenu } from './partner.js';
 import { createCampaign, fetchCampaigns, donate } from './solana.js';
+import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCalNext, confirmLogout } from './profile.js';
 
 export async function showMain() {
   const session = getSession();
@@ -106,6 +108,12 @@ window.savePartnerInfo = savePartnerInfo;
 window.createCampaign = createCampaign;
 window.fetchCampaigns = fetchCampaigns;
 window.donate = donate;
+window.openProfile = openProfile;
+window.closeProfile = closeProfile;
+window.profileCalRender = profileCalRender;
+window.profileCalPrev = profileCalPrev;
+window.profileCalNext = profileCalNext;
+window.confirmLogout = confirmLogout;
 
 // ========== INITIALIZE ==========
 try { if(typeof buffer!=='undefined') window.Buffer=buffer.Buffer; } catch(e) {}
