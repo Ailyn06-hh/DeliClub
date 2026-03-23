@@ -27,8 +27,7 @@ async function loadViews() {
     'views/login.html',
     'views/register-user.html',
     'views/register-restaurant.html',
-    'views/dashboard.html',
-    'views/profile.html'
+    'views/dashboard.html'
   ];
   
   for (const file of viewFiles) {
@@ -47,10 +46,9 @@ async function loadViews() {
 import { connectWallet, connectWalletForReg, showWalletBalance } from './wallet.js';
 import { register, login, logout } from './auth.js';
 import { addToCart, removeFromCart, updateCartUI, showCart, payWithSOL, clearCart } from './cart.js';
-import { renderDiscovery, viewMenu, filterMenuItems, filterByCategory, searchRestaurants, backToDiscovery } from './discovery.js';
+import { renderDiscovery, viewMenu, viewCategory, showAddedBadge, filterMenuItems, filterByCategory, searchRestaurants, backToDiscovery } from './discovery.js';
 import { renderSchedule, syncSchedule, addCategory, addItem, renderPartnerMenu, savePartnerInfo, setPartnerMenu, partnerMenu } from './partner.js';
 import { createCampaign, fetchCampaigns, donate } from './solana.js';
-import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCalNext, confirmLogout } from './profile.js';
 
 export async function showMain() {
   const session = getSession();
@@ -94,6 +92,8 @@ window.payWithSOL = payWithSOL;
 window.clearCart = clearCart;
 window.renderDiscovery = renderDiscovery;
 window.viewMenu = viewMenu;
+window.viewCategory = viewCategory;
+window.showAddedBadge = showAddedBadge;
 window.filterMenuItems = filterMenuItems;
 window.filterByCategory = filterByCategory;
 window.searchRestaurants = searchRestaurants;
@@ -106,12 +106,6 @@ window.savePartnerInfo = savePartnerInfo;
 window.createCampaign = createCampaign;
 window.fetchCampaigns = fetchCampaigns;
 window.donate = donate;
-window.openProfile = openProfile;
-window.closeProfile = closeProfile;
-window.profileCalRender = profileCalRender;
-window.profileCalPrev = profileCalPrev;
-window.profileCalNext = profileCalNext;
-window.confirmLogout = confirmLogout;
 
 // ========== INITIALIZE ==========
 try { if(typeof buffer!=='undefined') window.Buffer=buffer.Buffer; } catch(e) {}
