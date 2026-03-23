@@ -8,6 +8,7 @@ export async function register(type) {
     body.name = document.getElementById('reg-user-name').value.trim();
     body.phone = document.getElementById('reg-user-phone').value.trim();
     body.email = document.getElementById('reg-user-email').value.trim();
+    body.password = document.getElementById('reg-user-password').value;
     body.wallet = document.getElementById('reg-user-wallet').value.trim();
   } else {
     body.name = document.getElementById('reg-res-name').value.trim();

@@ -57,6 +57,51 @@
       "wallet": "2Mj9M3RPq1NyQwx5CPmVEUGY3bVt8bpDiU6ZsmQrMe8m",
       "phone": "4492326892",
       "email": "ailynhernandezhermosillo@gmail.com"
+    },
+    {
+      "id": "1774241554512",
+      "name": "prueba",
+      "type": "Cliente",
+      "password": "prueba",
+      "wallet": "2Mj9M3RPq1NyQwx5CPmVEUGY3bVt8bpDiU6ZsmQrMe8m",
+      "phone": "4492326892",
+      "email": "ailynhernandezhermosillo@gmail.com"
+    },
+    {
+      "id": "1774241975612",
+      "name": "prueba2",
+      "type": "Cliente",
+      "password": "prueba2",
+      "wallet": "2Mj9M3RPq1NyQwx5CPmVEUGY3bVt8bpDiU6ZsmQrMe8m",
+      "phone": "4491196896",
+      "email": "ahhomgkg@gmail.com"
+    },
+    {
+      "id": "1774242048272",
+      "name": "p1",
+      "type": "Cliente",
+      "password": "p1",
+      "wallet": "2Mj9M3RPq1NyQwx5CPmVEUGY3bVt8bpDiU6ZsmQrMe8m",
+      "phone": "4491196896",
+      "email": "aksksk@gmail.com"
+    },
+    {
+      "id": "1774242239748",
+      "name": "p3",
+      "type": "Cliente",
+      "password": "p3",
+      "wallet": "2Mj9M3RPq1NyQwx5CPmVEUGY3bVt8bpDiU6ZsmQrMe8m",
+      "phone": "12131",
+      "email": "ajsjshd"
+    },
+    {
+      "id": "1774242400460",
+      "name": "manuel",
+      "type": "Cliente",
+      "password": "manuel",
+      "wallet": "2Mj9M3RPq1NyQwx5CPmVEUGY3bVt8bpDiU6ZsmQrMe8m",
+      "phone": "828282",
+      "email": "jksdhsd"
     }
   ],
   "restaurants": [
