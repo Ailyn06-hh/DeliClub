@@ -1,0 +1,42 @@
+<div id="screen-main" class="screen">
+  <header>
+    <div class="header-logo">DeliClub</div>
+    <div class="header-right">
+      <span class="user-label" id="label-role"></span>
+       <div class="avatar" id="header-avatar" onclick="openProfile()" title="Mi perfil"></div>
+    </div>
+  </header>
+  <h1 style="font-size: 28px; font-weight: 800; text-align: left; margin: 0 0 18px 0;">Bienvenido <span id="user-name-display"></span></h1>
+  <div id="wallet-balance-display"></div>
+  
+  <!-- View: Client -->
+  <div id="view-client" style="display: none;">
+    <div class="search-wrapper">
+      <input type="text" id="search-restaurants" placeholder="Buscar restaurantes o comidas..." oninput="searchRestaurants(this.value)">
+      <span class="search-icon">🔍</span>
+    </div>
+    <div class="filter-chips" id="filter-chips">
+      <!-- Chips are rendered dynamically by discovery.js -->
+    </div>
+    <div id="client-discovery-list"><div class="loading">Cargando restaurantes...</div></div>
+  </div>
+
+  <!-- View: Partner -->
+  <div id="view-partner" style="display: none;">
+    <div class="dashboard-card">
+      <h3 style="margin-top:0;">Gestión Local</h3>
+      <input id="biz-name" placeholder="Nombre comercial"/>
+      <textarea id="biz-desc" placeholder="Descripción..." style="height:60px;"></textarea>
+      <div id="schedule-container"></div>
+      <button class="btn-primary" style="width:100%;" onclick="savePartnerInfo()">Guardar Cambios</button>
+    </div>
+    <div class="dashboard-card">
+      <h3 style="color: var(--secondary-color);">Gestión de Menú</h3>
+      <div style="display: flex; gap: 8px; margin-bottom: 20px;">
+        <input id="new-cat" placeholder="Nueva Categoría" style="margin: 0; background: #f0f0f0;"/>
+        <button class="btn-primary" onclick="addCategory()" style="width: auto; margin:0; padding: 10px 20px;">+</button>
+      </div>
+      <div id="partner-menu-list"></div>
+    </div>
+  </div>
+</div>

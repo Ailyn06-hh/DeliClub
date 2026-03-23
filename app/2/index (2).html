@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeliClub - Premium Platform</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container" id="app-container">
+  <!-- Views are loaded dynamically by js/app.js -->
+</div>
+
+<!-- Floating Cart Button -->
+<div id="cart-floating" class="cart-floating" onclick="showCart()">🛒 Ver Carrito (<span id="cart-count">0</span>)</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/buffer/6.0.3/buffer.min.js"></script>
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+<script src="https://unpkg.com/@coral-xyz/anchor@latest/dist/browser.anchor.min.js"></script>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

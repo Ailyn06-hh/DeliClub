@@ -132,29 +132,6 @@
       "address": "asdsad",
       "foodCategory": "asdfad",
       "delipoints": 0
-    },
-    {
-      "id": "1774288376345",
-      "name": "Maruchan",
-      "type": "Partner",
-      "password": "maruchan",
-      "wallet": "ELiNFFjCvcfuEE1XZs3oQm7yL4yyqPPea2oy2jAdn2Qh",
-      "delipoints": 0,
-      "rfc": "123",
-      "address": "dcdfv",
-      "foodCategory": "ci"
-    },
-    {
-      "id": "1774291348134",
-      "name": "rin",
-      "type": "Cliente",
-      "password": "rin",
-      "wallet": "ELiNFFjCvcfuEE1XZs3oQm7yL4yyqPPea2oy2jAdn2Qh",
-      "delipoints": 10,
-      "phone": "12345",
-      "email": "rinleon@gmail.com",
-      "bio": "La esposa de Leon",
-      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPfSqabE5vdFpvYFfutQIMsvvvOCfRFwohgQ&s"
     }
   ],
   "restaurants": [
@@ -339,21 +316,6 @@
       "rfc": "AUJQTW",
       "address": "JDJFSJS",
       "address2": "KAJDJA"
-    },
-    {
-      "id": "1774288376345",
-      "ownerId": "1774288376345",
-      "name": "Maruchan",
-      "desc": "",
-      "tags": "ci",
-      "rating": "5.0",
-      "img": "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80",
-      "status": "Abierto",
-      "menu": [],
-      "schedule": {},
-      "rfc": "123",
-      "address": "dcdfv",
-      "wallet": "ELiNFFjCvcfuEE1XZs3oQm7yL4yyqPPea2oy2jAdn2Qh"
     }
   ],
   "orders": [
@@ -512,27 +474,6 @@
       "totalSOL": 0.076,
       "txSignature": "Xyhm4rJ3SwtP71bBMBamVRBAHEPHyzMtQ6hGSRs6KAjkjM7ShAwbMDWp2bmo92c2d3MzeBWJqb89LGyxYAF1oX4",
       "timestamp": "2026-03-23T15:03:49.621Z",
-      "status": "confirmed"
-    },
-    {
-      "id": "1774291530974",
-      "clientId": "1774291348134",
-      "clientName": "rin",
-      "restaurantId": "1774141606946",
-      "restaurantName": "La piazza",
-      "items": [
-        {
-          "name": "Uova en Purgatorio",
-          "price": "190.0",
-          "qty": 1
-        }
-      ],
-      "totalMXN": 190,
-      "totalSOL": 0.076,
-      "txSignature": "s2ZqMQ9SeyYuFsasX8rhSq6wLtK3b3i6NK5QT5kutFTjEYQzCjH2h4ALaf5o9PQsib6n5DNMAuC8mhH1GNTxymT",
-      "earnedDelipoints": 10,
-      "usedDelipoints": 0,
-      "timestamp": "2026-03-23T18:45:30.974Z",
       "status": "confirmed"
     }
   ],

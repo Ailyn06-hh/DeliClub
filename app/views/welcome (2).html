@@ -1,0 +1,31 @@
+<div id="screen-welcome" class="screen">
+  <div class="welcome-logo-img">
+    <img src="views/img/logopng.png" alt="DeliClub Logo"/>
+  </div>
+  <h1 class="welcome-title">Hola bienvenido</h1>
+  <div class="welcome-brand">DeliClub</div>
+  
+  <div class="wallet-label">Conecta tu wallet</div>
+  <button class="phantom-btn" onclick="connectWallet()" id="welcome-wallet-btn">🟣 Conectar Phantom Wallet</button>
+  <div id="welcome-wallet-status"></div>
+  
+  <hr class="divider">
+  
+  <div class="section-label">Registro:</div>
+  <div class="reg-options">
+    <div class="reg-col">
+      <span class="reg-col-label">¿Eres restaurante?</span>
+      <button class="btn-outline" onclick="showScreen('screen-register-restaurant')">Soy Restaurante</button>
+    </div>
+    <div class="reg-col">
+      <span class="reg-col-label">¿Eres Cliente?</span>
+      <button class="btn-outline" onclick="showScreen('screen-register-user')">Soy Cliente</button>
+    </div>
+  </div>
+  
+  <hr class="divider">
+  
+  <button class="btn-support" onclick="alert('Soporte: soporte@deliclub.mx')">Soporte tecnico</button>
+  
+  <p style="margin-top: 30px;"><a onclick="showScreen('screen-login')">Ya tengo cuenta - Iniciar Sesión</a></p>
+</div>

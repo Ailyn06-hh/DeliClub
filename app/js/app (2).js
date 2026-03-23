@@ -33,8 +33,7 @@ async function loadViews() {
     'views/sucursales.html',
     'views/crear-sucursal.html',
     'views/reservations.html',
-    'views/user-reservations.html',
-    'views/restaurant-details.html'
+    'views/user-reservations.html'
 
   ];
   
@@ -62,18 +61,7 @@ import { openSucursales, backToRestaurantDashboard, searchSucursales, createNewS
 import { openCrearSucursal, submitNuevaSucursal } from './crear-sucursal.js';
 import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCalNext, confirmLogout, openEditProfile, closeEditProfile, saveProfileChanges, openReservationsList, backToProfile } from './profile.js';
 import { openReservations, resChangeQty, resCalRender, resCalPrev, resCalNext, resSelectDate, confirmReservation } from './reservations.js';
-import { renderRestaurantDetails, saveRestaurantSchedule } from './restaurant-details.js';
 
-// Restaurant Details logic
-export function openRestaurantDetails(id) {
-  showScreen('screen-restaurant-details');
-  if(id) {
-    renderRestaurantDetails(id);
-  }
-}
-export function backToSucursales() {
-  showScreen('screen-sucursales');
-}
 
 
 export async function showMain() {
@@ -155,9 +143,6 @@ window.openCrearSucursal = openCrearSucursal;
 window.submitNuevaSucursal = submitNuevaSucursal;
 window.openReservationsList = openReservationsList;
 window.backToProfile = backToProfile;
-window.openRestaurantDetails = openRestaurantDetails;
-window.backToSucursales = backToSucursales;
-window.saveRestaurantSchedule = saveRestaurantSchedule;
 
 
 window.openReservations = openReservations;

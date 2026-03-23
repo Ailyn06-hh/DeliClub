@@ -56,7 +56,7 @@ function renderBranches(branches) {
     const statusClass = isOpen ? 'suc-status-open' : 'suc-status-closed';
     const statusText = isOpen ? 'Abierto' : 'Cerrado';
     return `
-      <div class="suc-card" onclick="openRestaurantDetails('${b.id}')">
+      <div class="suc-card">
         <div class="suc-card-name">${b.name}</div>
         <div class="suc-card-status ${statusClass}">${statusText}</div>
       </div>

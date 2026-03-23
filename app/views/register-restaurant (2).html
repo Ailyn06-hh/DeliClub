@@ -1,0 +1,18 @@
+<div id="screen-register-restaurant" class="screen reg-screen">
+  <a onclick="showScreen('screen-welcome')" style="font-size:22px; border:none; display:inline-block; margin-bottom:15px; cursor:pointer;">←</a>
+  <h2>Registro Restaurantes</h2>
+  <label class="field-label">Nombre del establecimiento:</label>
+  <input id="reg-res-name" placeholder="" />
+  <label class="field-label">RFC:</label>
+  <input id="reg-res-rfc" placeholder="" />
+  <label class="field-label">Dirección Física:</label>
+  <input id="reg-res-address" placeholder="" />
+  <label class="field-label">Categoría de Comida</label>
+  <input id="reg-res-category" placeholder="" />
+  <label class="field-label">Phantom Wallet</label>
+  <button class="phantom-btn" onclick="connectWalletForReg('reg-res')" id="reg-res-phantom-btn">🟣 Conectar Phantom</button>
+  <div id="reg-res-wallet-status"></div>
+  <input type="hidden" id="reg-res-wallet" />
+  <div class="triangle-deco"></div>
+  <button class="btn-register-main" onclick="register('Partner')">Registrarme</button>
+</div>
