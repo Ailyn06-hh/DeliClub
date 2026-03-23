@@ -63,6 +63,7 @@ export async function saveProfileChanges() {
 // ── Calendar state ──────────────────────────────────────────────
 let calDate = new Date();
 let reservationDates = []; // array of 'YYYY-MM-DD' strings
+let allUserReservations = []; // array of full objects
 
 // ── Open / Close ────────────────────────────────────────────────
 export function openProfile() {
@@ -137,17 +138,20 @@ function renderWalletCard(session) {
 
 // ── Reservation Calendar ────────────────────────────────────────
 async function initCalendar(session) {
-  // Load reservations from API (or use empty array if endpoint doesn't exist yet)
+  // Load reservations from API
   try {
     const res = await fetch(`${API}/api/reservations?userId=${session.id}`);
     if (res.ok) {
       const data = await res.json();
+      allUserReservations = data;
       reservationDates = data.map(r => r.date); // expected 'YYYY-MM-DD'
     } else {
       reservationDates = session.reservations || [];
+      allUserReservations = [];
     }
   } catch {
     reservationDates = session.reservations || [];
+    allUserReservations = [];
   }
   calDate = new Date();
   buildCalSelectors();
@@ -226,7 +230,9 @@ function renderCalGrid(year, month) {
       isToday ? 'today' : '',
       hasReservation ? 'has-reservation' : ''
     ].filter(Boolean).join(' ');
-    html += `<div class="${classes}">${d}</div>`;
+    
+    const onClickAttr = hasReservation ? `onclick="window.openReservationsList('${dateStr}')" style="cursor:pointer;"` : '';
+    html += `<div class="${classes}" ${onClickAttr}>${d}</div>`;
   }
 
   grid.innerHTML = html;
@@ -311,4 +317,42 @@ function formatDate(dateStr) {
   } catch {
     return dateStr;
   }
+}
+
+// ── Profile Reservations View ────────────────────────────────────
+export function openReservationsList(dateStr) {
+  const listEl = document.getElementById('user-res-list');
+  if(!listEl) return;
+  
+  const dailyRes = allUserReservations.filter(r => r.date === dateStr);
+  const session = getSession();
+  
+  if(dailyRes.length === 0) {
+    listEl.innerHTML = '<p style="text-align:center;color:#888;">No hay reservaciones para esta fecha.</p>';
+  } else {
+    // Format date from YYYY-MM-DD to DD/MM/YYYY
+    const [y, m, d] = dateStr.split('-');
+    const formattedDate = `${d}/${m}/${y}`;
+    
+    listEl.innerHTML = dailyRes.map(r => `
+      <div class="user-res-card">
+        <h3 class="user-res-card-title">Reservacion</h3>
+        <div class="user-res-row">Restaurante: <span>${r.restaurantName.toLowerCase() || 'Restaurante'}</span></div>
+        <div class="user-res-row">Cantidad: <span>${r.guests}</span></div>
+        <div class="user-res-row">Hora: <span>${r.time}</span></div>
+        <div class="user-res-row">Fecha: <span>${formattedDate}</span></div>
+        <div class="user-res-row">Nombre: <span>${(r.reservationName || session.name).toLowerCase()}</span></div>
+        <div class="user-res-row">Zona de restaurante: <span>${r.zone || 'Terraza'}</span></div>
+        <div class="user-res-row">Telefono: <span>${session.phone || '4444444444'}</span></div>
+        <div class="user-res-row">Correo: <span>${(session.email || 'usuario@gmail.com').toLowerCase()}</span></div>
+        
+        <button class="user-res-new-btn" onclick="window.backToDiscovery()">Nueva reservacion</button>
+      </div>
+    `).join('');
+  }
+  showScreen('screen-user-reservations');
+}
+
+export function backToProfile() {
+  showScreen('screen-profile');
 }

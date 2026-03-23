@@ -104,23 +104,15 @@ header { display: flex; justify-content: space-between; align-items: center; mar
   width: 100%; height: 210px; background-size: cover; background-position: center;
   position: relative;
 }
-.res-card .res-info {
-  padding: 14px 16px 16px;
-}
-.res-card .res-name-row {
-  display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;
-}
-.res-card .res-name {
-  font-weight: 800; font-size: 17px; color: var(--text-color); margin: 0;
-}
+.res-card .res-info { padding: 14px 16px 16px; }
+.res-card .res-name-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.res-card .res-name { font-weight: 800; font-size: 17px; color: var(--text-color); margin: 0; }
 .res-card .res-rating {
   display: flex; align-items: center; gap: 5px; font-size: 14px; font-weight: 700;
   color: var(--text-color); white-space: nowrap;
 }
 .res-card .res-rating .stars { color: #e8a84c; font-size: 17px; letter-spacing: 1px; }
-.res-card .res-tags {
-  font-size: 13px; color: #9c8474; margin-bottom: 6px;
-}
+.res-card .res-tags { font-size: 13px; color: #9c8474; margin-bottom: 6px; }
 .res-card .res-location {
   display: inline-flex; align-items: center; gap: 6px;
   background: #f0e8df; color: var(--primary-color); padding: 6px 14px;
@@ -129,9 +121,7 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 .res-card .res-location .loc-dot {
   width: 8px; height: 8px; background: var(--primary-color); border-radius: 50%; display: inline-block;
 }
-.res-card .res-sol-badge {
-  font-size: 10px; color: var(--sol-color); font-weight: 600; margin-top: 4px;
-}
+.res-card .res-sol-badge { font-size: 10px; color: var(--sol-color); font-weight: 600; margin-top: 4px; }
 
 .solana-section { border-top: 2px dashed #ddd; margin-top: 30px; padding-top: 20px; text-align: left; }
 .campaign-card { background: #fff; padding: 15px; border-radius: 15px; margin-bottom: 15px; border: 1px solid #eee; }
@@ -177,22 +167,17 @@ a { color: var(--secondary-color); font-weight: bold; text-decoration: none; bor
 /* New La Piazza Styles */
 .detail-header-rating { margin-left: auto; display: flex; align-items: center; gap: 6px; }
 .rating-num { font-size: 14px; font-weight: 800; color: var(--text-color); }
-
 .detail-schedule-wrap { margin-bottom: 12px; font-size: 16px; color: var(--text-color); display: flex; gap: 6px; }
 .schedule-label { font-size: 18px; font-weight: 600; color: var(--secondary-color); }
 .schedule-text { font-size: 16px; font-weight: 600; color: var(--text-color); }
-
 .btn-reserve-new { display: block; width: 100%; padding: 14px; background: #c89f82; border-radius: 12px; color: white; border: none; font-size: 16px; font-weight: 700; cursor: pointer; margin-bottom: 25px; transition: opacity 0.2s; }
 .btn-reserve-new:hover { opacity: 0.9; }
-
 .menu-divider { border: none; border-top: 3px solid var(--secondary-color); margin: 0 0 20px 0; }
-
 .menu-section-header-new { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
 .menu-section-header-new h3 { font-size: 24px; font-weight: 600; color: var(--secondary-color); margin: 0; }
 .menu-search-wrapper { position: relative; }
 .menu-search-new { padding: 10px 36px 10px 16px; background: #f3f0ea; border: none; border-radius: 20px; font-size: 14px; color: #555; width: 190px; }
 .menu-search-wrapper .search-icon-new { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 16px; color: #888; }
-
 .menu-cat-card-new { background: #f4eee2; border-radius: 16px; overflow: hidden; margin-bottom: 20px; padding: 18px; position: relative; }
 .menu-cat-card-new h4 { font-size: 20px; font-weight: 700; color: var(--text-color); margin: 0 0 12px 0; }
 .menu-cat-card-img-new { width: calc(100% + 36px); height: 160px; object-fit: cover; margin: 0 -18px 15px -18px; display: block; }
@@ -229,103 +214,52 @@ a { color: var(--secondary-color); font-weight: bold; text-decoration: none; bor
 @media (min-width: 769px) {
   body { align-items: stretch; }
   .container { max-width: 1100px; padding: 30px 50px; }
-
-  /* Auth screens (welcome, login, register) stay centered card */
-  #screen-welcome,
-  #screen-login,
-  #screen-register-user,
-  #screen-register-restaurant {
-    max-width: 500px;
-    margin: 40px auto;
-    background: var(--white);
-    border-radius: 30px;
-    padding: 40px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+  #screen-welcome, #screen-login, #screen-register-user, #screen-register-restaurant {
+    max-width: 500px; margin: 40px auto; background: var(--white);
+    border-radius: 30px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.06);
   }
-
-  /* Dashboard takes full width */
   #screen-main { text-align: left; }
   #screen-main h1 { font-size: 32px; }
-
-  /* Header bar */
   header { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #e8ddd4; }
-
-  /* Wallet balance inline */
   .wallet-balance { max-width: 400px; }
-
-  /* Search bar wider */
   .search-wrapper { max-width: 500px; }
-
-  /* Filter chips */
   .filter-chips { flex-wrap: wrap; }
-
-  /* Restaurant cards — 2 column grid */
-  #client-discovery-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-  #client-discovery-list p,
-  #client-discovery-list .loading { grid-column: 1 / -1; }
-
-  /* When viewing detail menu, go single column */
-  #client-discovery-list:has(.detail-header) {
-    grid-template-columns: 1fr;
-    max-width: 700px;
-  }
-
+  #client-discovery-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  #client-discovery-list p, #client-discovery-list .loading { grid-column: 1 / -1; }
+  #client-discovery-list:has(.detail-header) { grid-template-columns: 1fr; max-width: 700px; }
   .res-card .res-img { height: 220px; }
-
-  /* Partner dashboard — 2-column layout */
-  #view-partner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    align-items: start;
-  }
-
-  /* Cart modal centered */
+  #view-partner { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
   .cart-content { max-width: 500px; border-radius: 25px; margin-bottom: 20px; }
   .cart-modal { align-items: center; }
-
-  /* Registration form fields */
   .reg-screen { padding: 30px 40px; }
 }
 
 /* Ultra-wide (>1200px) — 3 column restaurant grid */
 @media (min-width: 1201px) {
   .container { max-width: 1300px; }
-  #client-discovery-list {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  #client-discovery-list { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* Category Menu Detailed View */
 .category-hero-title { font-size: 28px; font-weight: 800; color: #8b5b3f; margin: 0 0 15px 0; }
 .category-hero-img { width: calc(100% + 40px); height: 180px; object-fit: cover; margin: 0 -20px 20px -20px; display: block; }
 .category-items-container { padding-bottom: 80px; }
-
 .item-card-detail {
   background: #fcfaf8; border-radius: 16px; padding: 18px; margin-bottom: 20px;
   display: flex; gap: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);
 }
 .item-card-col-left { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
 .item-card-col-right { width: 120px; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 10px; }
-
 .item-detail-name { font-size: 18px; font-weight: 700; color: #56331a; margin: 0; }
 .item-detail-desc { font-size: 13px; color: #7a7a7a; line-height: 1.4; margin: 0; }
 .item-price { font-size: 18px; font-weight: 800; color: #56331a; margin: 0; }
-
 .btn-add-order {
   background: #8b5b3f; color: white; border: none; border-radius: 12px;
   padding: 10px; font-size: 13px; font-weight: 700; cursor: pointer;
   transition: opacity 0.2s; width: 100%; text-align: center; margin-top: auto;
 }
 .btn-add-order:hover { opacity: 0.9; }
-
-.item-detail-img {
-  width: 120px; height: 90px; object-fit: cover; border-radius: 12px;
-}
+.item-detail-img { width: 120px; height: 90px; object-fit: cover; border-radius: 12px; }
 .added-to-order-badge {
   background: #deb887; color: #56331a; font-size: 11px; font-weight: 700;
   text-align: center; padding: 8px 6px; border-radius: 10px; line-height: 1.2;
@@ -382,7 +316,7 @@ a { color: var(--secondary-color); font-weight: bold; text-decoration: none; bor
 .cal-day-new { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin: 0 auto; border-radius: 50%; font-size: 14px; font-weight: 600; color: var(--text-color); }
 .cal-day-new.empty { background: transparent; }
 .cal-day-new.today { background: #fdfaf6; border: 1px solid #e0d6cc; color: var(--primary-color); }
-.cal-day-new.has-reservation { background: #bf9577; color: white; }
+.cal-day-new.has-reservation { background: #bf9577; color: white; cursor: pointer; }
 
 .purchase-card-new { background: #f5f0eb; border-radius: 12px; padding: 15px; margin-bottom: 12px; text-align: left; }
 .purchase-title-new { font-size: 18px; font-weight: 800; color: #000; margin-bottom: 6px; }
@@ -630,77 +564,50 @@ a { color: var(--secondary-color); font-weight: bold; text-decoration: none; bor
   background: #d9a95f; transform: translateY(-2px);
 }
 /* Reservations View */
-.res-label {
-  font-size: 15px;
-  font-weight: 800;
-  color: #a87452;
-  margin: 0 0 10px 0;
-  text-align: left;
-}
+.res-label { font-size: 15px; font-weight: 800; color: #a87452; margin: 0 0 10px 0; text-align: left; }
 .res-qty-btn {
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  width: 35px;
-  height: 35px;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  color: #5d4037;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: white; border: 1px solid #ddd; border-radius: 8px;
+  width: 35px; height: 35px; font-size: 20px; font-weight: bold;
+  cursor: pointer; color: #5d4037; display: flex; justify-content: center; align-items: center;
 }
 .res-time-select {
-  padding: 8px 12px;
-  border: 1px solid #e0d6cc;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  background: white;
-  color: #5d4037;
-  outline: none;
-  cursor: pointer;
+  padding: 8px 12px; border: 1px solid #e0d6cc; border-radius: 10px;
+  font-size: 16px; font-weight: bold; background: white; color: #5d4037; outline: none; cursor: pointer;
 }
 .res-input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  background: #fcfaf8;
-  font-size: 15px;
-  font-weight: 600;
-  color: #5d4037;
-  outline: none;
-  box-sizing: border-box;
+  width: 100%; padding: 12px; border-radius: 10px; border: none;
+  background: #fcfaf8; font-size: 15px; font-weight: 600; color: #5d4037; outline: none; box-sizing: border-box;
 }
 .res-policy-btn {
-  width: 100%;
-  padding: 12px;
-  background: transparent;
-  color: #a87452;
-  border: 1px solid #a87452;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-bottom: 15px;
+  width: 100%; padding: 12px; background: transparent; color: #a87452;
+  border: 1px solid #a87452; border-radius: 10px; font-size: 14px; font-weight: bold;
+  cursor: pointer; margin-bottom: 15px;
 }
 .res-submit-btn {
-  width: 100%;
-  padding: 16px;
-  background: #a87452;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-size: 18px;
-  font-weight: 800;
-  cursor: pointer;
+  width: 100%; padding: 16px; background: #a87452; color: white;
+  border: none; border-radius: 12px; font-size: 18px; font-weight: 800; cursor: pointer;
 }
-.cal-day-new.selectable {
-  cursor: pointer;
+.cal-day-new.selectable { cursor: pointer; }
+.cal-day-new.selected { background: #a87452; color: white; }
+
+/* User Profile Reservations List */
+.user-res-card {
+  background: #eed4c4; border-radius: 20px; padding: 25px 20px;
+  margin-bottom: 25px; color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
+
 .cal-day-new.selected {
   background: #a87452;
   color: white;
 }
+
+.user-res-card-title { text-align: center; font-size: 24px; font-weight: 800; margin: 0 0 20px 0; color: #fff; }
+.user-res-row { font-size: 16px; font-weight: 800; margin-bottom: 12px; color: #fff; display: flex; justify-content: flex-start; gap: 8px; }
+.user-res-row span { font-weight: 600; }
+.user-res-new-btn {
+  display: block; text-align: center; margin-top: 25px; font-size: 17px;
+  font-weight: 800; color: #e68a2e; text-decoration: none; cursor: pointer;
+  background: none; border: none; width: 100%;
+}
+.user-res-new-btn:hover { opacity: 0.8; }
+

@@ -30,10 +30,10 @@ async function loadViews() {
     'views/dashboard.html',
     'views/profile.html',
     'views/restaurant-dashboard.html',
-    'views/restaurant-dashboard.html',
     'views/sucursales.html',
     'views/crear-sucursal.html',
-    'views/reservations.html'
+    'views/reservations.html',
+    'views/user-reservations.html'
 
   ];
   
@@ -60,7 +60,9 @@ import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCal
 import { renderRestaurantDashboard, showTrendsModal, closeTrendsModal } from './restaurant-dashboard.js';
 import { openSucursales, backToRestaurantDashboard, searchSucursales, createNewSucursal } from './sucursales.js';
 import { openCrearSucursal, submitNuevaSucursal } from './crear-sucursal.js';
+import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCalNext, confirmLogout, openEditProfile, closeEditProfile, saveProfileChanges, openReservationsList, backToProfile } from './profile.js';
 import { openReservations, resChangeQty, resCalRender, resCalPrev, resCalNext, resSelectDate, confirmReservation } from './reservations.js';
+
 
 
 export async function showMain() {
@@ -140,6 +142,9 @@ window.searchSucursales = searchSucursales;
 window.createNewSucursal = createNewSucursal;
 window.openCrearSucursal = openCrearSucursal;
 window.submitNuevaSucursal = submitNuevaSucursal;
+window.openReservationsList = openReservationsList;
+window.backToProfile = backToProfile;
+
 
 window.openReservations = openReservations;
 window.resChangeQty = resChangeQty;
