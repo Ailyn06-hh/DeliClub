@@ -102,14 +102,20 @@ function renderProfileInfo(session) {
   const bioEl = document.getElementById('profile-bio');
   if (bioEl) bioEl.textContent = session.bio || 'Usuario experto en gastronomía';
 
-  // Delipoints
-  const points = session.delipoints || 0; // 1 point = 1 MXN
-  const mxn = points.toFixed(2);
-  const sol = (points / SOL_RATE).toFixed(4);
-  const mxnEl = document.getElementById('profile-delipoints-mxn');
-  const solEl = document.getElementById('profile-delipoints-sol');
-  if (mxnEl) mxnEl.textContent = `$ ${mxn} MXN`;
-  if (solEl) solEl.textContent = `${sol} SOL`;
+  // Delipoints (show only for clients)
+  const delipointsCard = document.getElementById('profile-delipoints-card');
+  if (session.type === 'Restaurante' || session.type === 'Partner') {
+    if (delipointsCard) delipointsCard.style.display = 'none';
+  } else {
+    if (delipointsCard) delipointsCard.style.display = 'flex';
+    const points = session.delipoints || 0; // 1 point = 1 MXN
+    const mxn = points.toFixed(2);
+    const sol = (points / SOL_RATE).toFixed(4);
+    const mxnEl = document.getElementById('profile-delipoints-mxn');
+    const solEl = document.getElementById('profile-delipoints-sol');
+    if (mxnEl) mxnEl.textContent = `$ ${mxn} MXN`;
+    if (solEl) solEl.textContent = `${sol} SOL`;
+  }
 }
 
 // ── Wallet card ─────────────────────────────────────────────────
