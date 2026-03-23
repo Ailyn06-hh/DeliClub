@@ -102,14 +102,6 @@
       "wallet": "2Mj9M3RPq1NyQwx5CPmVEUGY3bVt8bpDiU6ZsmQrMe8m",
       "phone": "828282",
       "email": "jksdhsd"
-    },{
-          "id": "1774202465883",
-      "name": "Hanny",
-      "type": "Cliente",
-      "password": "hanny",
-      "wallet": "9nEXZ7wYQN6BSxjPFUk74j6TYfp1LLFmM2j3aK5BZ9yA",
-      "phone": "449 32423423423423",
-      "email": "hanny@gmail.com"
     },
     {
       "id": "1774242403733",
@@ -135,14 +127,55 @@
     {
       "id": "1774141606946",
       "ownerId": "1774141606946",
-      "name": "El Comelon",
-      "desc": "",
-      "tags": "Nuevo",
-      "rating": "5.0",
-      "img": "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80",
+      "name": "La piazza",
+      "desc": "Al cruzar la puerta, lo primero que te envuelve es el aroma embriagador de la albahaca fresca, el ajo dorado y el pan recién horneado. La atmósfera es cálida, iluminada por una luz tenue que rebota en botellas de vino de cristal verde dispuestas en las repisas de madera oscura.",
+      "tags": "Italian",
+      "rating": "4.8",
+      "img": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80",
       "status": "Abierto",
-      "menu": [],
-      "schedule": {}
+      "menu": [
+        {
+          "name": "Desayunos",
+          "catImg": "https://images.unsplash.com/photo-1513442542250-854d436a73f2?w=600&q=80",
+          "items": [
+            {
+              "name": "Frittata di Verdure",
+              "desc": "Tortilla abierta al horno con espinacas, jitomate cherry y queso de cabra",
+              "price": "220.0",
+              "itemImg": "https://images.unsplash.com/photo-1598449426314-8b01bbbb2b8c?w=400&q=80"
+            },
+            {
+              "name": "Uova en Purgatorio",
+              "desc": "Huevos pochados en una salsa de tomate picante con albahaca y pan tostado con ajo.",
+              "price": "190.0",
+              "itemImg": "https://images.unsplash.com/photo-1582169505937-b9992bd01ed9?w=400&q=80"
+            },
+            {
+              "name": "Panettone French Toast",
+              "desc": "Rebanadas de panettone pasadas por huevo y canela, servidas con mascarpone y frutos rojos.",
+              "price": "185.0",
+              "itemImg": "https://images.unsplash.com/photo-1484723091791-009e3262a56f?w=400&q=80"
+            }
+          ]
+        },
+        {
+          "name": "Ensaladas",
+          "catImg": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80",
+          "items": [
+            {
+              "name": "Panettone French Toast"
+            },
+            {
+              "name": "Frittata di Verdure"
+            },
+            {
+              "name": "Cornetto Ripieno"
+            }
+          ]
+        }
+      ],
+      "schedule": {},
+      "wallet": "BKibDkcRq7DKHrsXMJ2KkF7WMmSPAxeyq9eci2q26hd6"
     },
     {
       "id": "1774141747081",
@@ -212,6 +245,21 @@
       "wallet": "FeiXvQj4hVJC4L31wa2ZAdAE9WUuBcZfA1drg83ZYRUd",
       "rfc": "kejqlkejlkwjlw",
       "address": "welkwjlkwej"
+    },
+    {
+      "id": "1774245349518",
+      "ownerId": "1774245349518",
+      "name": "La piazza",
+      "desc": "",
+      "tags": "asdfad",
+      "rating": "5.0",
+      "img": "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80",
+      "status": "Abierto",
+      "menu": [],
+      "schedule": {},
+      "rfc": "sdfasdf",
+      "address": "asdsad",
+      "wallet": "BKibDkcRq7DKHrsXMJ2KkF7WMmSPAxeyq9eci2q26hd6"
     }
   ],
   "orders": [
@@ -251,6 +299,68 @@
       "totalSOL": 0.0012,
       "txSignature": "44oqwYqSVZEcr7CpjH76K4w81ymmxDRs87KqYReKZ92PsankQv8MfXCZC5ZJj49Rmfh4PynHSYHkQtPjvxSgW9PE",
       "timestamp": "2026-03-22T02:57:06.431Z",
+      "status": "confirmed"
+    },
+    {
+      "id": "1774245856852",
+      "clientId": "1774242403733",
+      "clientName": "Leon",
+      "restaurantId": "1774141606946",
+      "restaurantName": "La piazza",
+      "items": [
+        {
+          "name": "Uova en Purgatorio",
+          "price": "190.0",
+          "qty": 1
+        }
+      ],
+      "totalMXN": 190,
+      "totalSOL": 0.076,
+      "txSignature": "4s4YjK8z2BK1G5EwHSxpiym2NUWP1EZZu3PHLhhWLHYhvWGAmkhW8qXYMmqjDpNnzjgUHNTL9ch2oMWpdr9vGv8R",
+      "timestamp": "2026-03-23T06:04:16.852Z",
+      "status": "confirmed"
+    },
+    {
+      "id": "1774246194342",
+      "clientId": "1774242403733",
+      "clientName": "Leon",
+      "restaurantId": "1774146889982",
+      "restaurantName": "Mirestaurante",
+      "items": [
+        {
+          "name": "Webitosssss",
+          "price": "1",
+          "qty": 1
+        }
+      ],
+      "totalMXN": 1,
+      "totalSOL": 0.0004,
+      "txSignature": "59GD4RaZCVdpwwKSLkvE7K3wRZNfDXUsuVbAtMoqx67asU3CgK3vH1GhUL4KnoDzN4kdHckkYT7kv2PV8xFg5Gyo",
+      "timestamp": "2026-03-23T06:09:54.342Z",
+      "status": "confirmed"
+    },
+    {
+      "id": "1774251387366",
+      "clientId": "1774242403733",
+      "clientName": "Leon",
+      "restaurantId": "1774141606946",
+      "restaurantName": "La piazza",
+      "items": [
+        {
+          "name": "Frittata di Verdure",
+          "price": "220.0",
+          "qty": 1
+        },
+        {
+          "name": "Panettone French Toast",
+          "price": "0",
+          "qty": 1
+        }
+      ],
+      "totalMXN": 220,
+      "totalSOL": 0.088,
+      "txSignature": "eKdy7FmDKhrWp6uPrpdCsDhe2gzh7oLDMqjy4TBpN11XxdDDFLV6428zodQci5GN9WyJrmyFN5WoQA8gCdiZFyQ",
+      "timestamp": "2026-03-23T07:36:27.366Z",
       "status": "confirmed"
     }
   ]
