@@ -685,3 +685,37 @@ input:checked + .rd-slider:before { transform: translateX(20px); }
 .rd-reward-label { font-size: 13px; color: #666; font-weight: 600; margin-bottom: 8px; }
 .rd-reward-value { font-size: 18px; font-weight: 800; color: #000; }
 .rd-reward-divider { width: 1px; height: 40px; background-color: #ccc; }
+
+/* ========== RESERVACIONES CLICLI VIEW ========== */
+.res-clicli-card {
+  background: #ecdac5; /* light sand/cream */
+  border-radius: 25px;
+  padding: 24px 20px;
+  color: #fff;
+  font-family: inherit;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.res-clicli-header {
+  font-size: 18px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 12px;
+  color: #fff;
+  text-transform: capitalize;
+}
+.res-clicli-field {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.6;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+.res-clicli-new {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 900;
+  color: #ff9800; /* vibrant orange */
+  text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff;
+  letter-spacing: 0.5px;
+}

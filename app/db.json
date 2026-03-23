@@ -552,6 +552,32 @@
       "zone": "Terraza",
       "timestamp": "2026-03-23T17:32:21.723Z",
       "status": "confirmed"
+    },
+    {
+      "id": "1774295916530",
+      "userId": "1774291348134",
+      "restaurantId": "1774141606946",
+      "restaurantName": "La piazza",
+      "date": "2026-03-23",
+      "time": "14:00",
+      "guests": 6,
+      "reservationName": "rin",
+      "zone": "Terraza",
+      "timestamp": "2026-03-23T19:58:36.503Z",
+      "status": "confirmed"
+    },
+    {
+      "id": "1774296116277",
+      "userId": "1774291348134",
+      "restaurantId": "1774288376345",
+      "restaurantName": "Maruchan",
+      "date": "2026-03-23",
+      "time": "13:00",
+      "guests": 6,
+      "reservationName": "rin",
+      "zone": "Terraza",
+      "timestamp": "2026-03-23T20:01:56.272Z",
+      "status": "confirmed"
     }
   ]
 }

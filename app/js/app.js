@@ -34,8 +34,8 @@ async function loadViews() {
     'views/crear-sucursal.html',
     'views/reservations.html',
     'views/user-reservations.html',
-    'views/restaurant-details.html'
-
+    'views/restaurant-details.html',
+    'views/reservaciones-clicli.html'
   ];
   
   for (const file of viewFiles) {
@@ -63,6 +63,7 @@ import { openCrearSucursal, submitNuevaSucursal } from './crear-sucursal.js';
 import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCalNext, confirmLogout, openEditProfile, closeEditProfile, saveProfileChanges, openReservationsList, backToProfile } from './profile.js';
 import { openReservations, resChangeQty, resCalRender, resCalPrev, resCalNext, resSelectDate, confirmReservation } from './reservations.js';
 import { renderRestaurantDetails, saveRestaurantSchedule } from './restaurant-details.js';
+import { openReservacionesClicli } from './reservaciones-clicli.js';
 
 // Restaurant Details logic
 export function openRestaurantDetails(id) {
@@ -158,6 +159,7 @@ window.backToProfile = backToProfile;
 window.openRestaurantDetails = openRestaurantDetails;
 window.backToSucursales = backToSucursales;
 window.saveRestaurantSchedule = saveRestaurantSchedule;
+window.openReservacionesClicli = openReservacionesClicli;
 
 
 window.openReservations = openReservations;
