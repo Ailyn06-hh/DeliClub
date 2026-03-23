@@ -1,0 +1,185 @@
+{
+  "users": [
+    {
+      "id": "1774141606946",
+      "name": "El Comelon",
+      "type": "Partner",
+      "password": "el comelon"
+    },
+    {
+      "id": "1774141747081",
+      "name": "Comecome",
+      "type": "Partner",
+      "password": "comecome"
+    },
+    {
+      "id": "1774143774079",
+      "name": "carlos",
+      "type": "Cliente",
+      "password": "carlos",
+      "wallet": "gRzJJofqSgScVUhcokeE5CSDM7wMz6GhZwQxcVoSUUi",
+      "phone": "99999999",
+      "email": "akjshkajsh@ldskjlds.com"
+    },
+    {
+      "id": "1774146889982",
+      "name": "Mirestaurante",
+      "type": "Partner",
+      "password": "mirestaurante",
+      "wallet": "FeiXvQj4hVJC4L31wa2ZAdAE9WUuBcZfA1drg83ZYRUd",
+      "rfc": "kejqlkejlkwjlw",
+      "address": "welkwjlkwej",
+      "foodCategory": "lwlwlwlw"
+    },
+    {
+      "id": "1774146996293",
+      "name": "carlos1",
+      "type": "Cliente",
+      "password": "carlos1",
+      "wallet": "gRzJJofqSgScVUhcokeE5CSDM7wMz6GhZwQxcVoSUUi",
+      "phone": "99999999",
+      "email": "akjsaaahkajsh@ldskjlds.com"
+    },
+    {
+      "id": "1774202465883",
+      "name": "Hanny",
+      "type": "Cliente",
+      "password": "hanny",
+      "wallet": "9nEXZ7wYQN6BSxjPFUk74j6TYfp1LLFmM2j3aK5BZ9yA",
+      "phone": "449 32423423423423",
+      "email": "hanny@gmail.com"
+    },
+    {
+      "id": "1774237330579",
+      "name": "Ailyn",
+      "type": "Cliente",
+      "password": "ailyn",
+      "wallet": "2Mj9M3RPq1NyQwx5CPmVEUGY3bVt8bpDiU6ZsmQrMe8m",
+      "phone": "4492326892",
+      "email": "ailynhernandezhermosillo@gmail.com"
+    }
+  ],
+  "restaurants": [
+    {
+      "id": "1774141606946",
+      "ownerId": "1774141606946",
+      "name": "El Comelon",
+      "desc": "",
+      "tags": "Nuevo",
+      "rating": "5.0",
+      "img": "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80",
+      "status": "Abierto",
+      "menu": [],
+      "schedule": {}
+    },
+    {
+      "id": "1774141747081",
+      "ownerId": "1774141747081",
+      "name": "Comecome",
+      "desc": "",
+      "tags": "Restaurant",
+      "rating": "5.0",
+      "img": "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80",
+      "status": "Abierto",
+      "menu": [
+        {
+          "name": "Desayuno",
+          "items": [
+            {
+              "name": "Huevitos",
+              "desc": "lkadjñlksjñlkajsd",
+              "price": "150"
+            }
+          ]
+        },
+        {
+          "name": "Cena",
+          "items": [
+            {
+              "name": "Pancito",
+              "desc": "lkjdñlkajñlkr rlrwekreñl",
+              "price": "150"
+            }
+          ]
+        }
+      ],
+      "schedule": {}
+    },
+    {
+      "id": "1774146889982",
+      "ownerId": "1774146889982",
+      "name": "Mirestaurante",
+      "desc": "lkajlkajldda",
+      "tags": "lwlwlwlw",
+      "rating": "5.0",
+      "img": "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80",
+      "status": "Abierto",
+      "menu": [
+        {
+          "name": "Desayuno",
+          "items": [
+            {
+              "name": "Webitosssss",
+              "desc": "lkjdeplkjwñlkdje",
+              "price": "1"
+            }
+          ]
+        },
+        {
+          "name": "Comida",
+          "items": [
+            {
+              "name": "Pollito",
+              "desc": "kdsdsldsl",
+              "price": "1.5"
+            }
+          ]
+        }
+      ],
+      "schedule": {},
+      "wallet": "FeiXvQj4hVJC4L31wa2ZAdAE9WUuBcZfA1drg83ZYRUd",
+      "rfc": "kejqlkejlkwjlw",
+      "address": "welkwjlkwej"
+    }
+  ],
+  "orders": [
+    {
+      "id": "1774147874713",
+      "clientId": "1774146996293",
+      "clientName": "carlos1",
+      "restaurantId": "1774146889982",
+      "restaurantName": "Mirestaurante",
+      "items": [
+        {
+          "name": "Webitosssss",
+          "price": "1",
+          "qty": 5
+        }
+      ],
+      "totalMXN": 5,
+      "totalSOL": 0.002,
+      "txSignature": "2CnHywLqWrbEgSJohfpAj4GAm2wTsvXB8wenDo5JUtAqjC7DN1av1hsWCsPbb1FaQy4ZXEL2htCz5f44ikY7mkKE",
+      "timestamp": "2026-03-22T02:51:14.713Z",
+      "status": "confirmed"
+    },
+    {
+      "id": "1774148226431",
+      "clientId": "test-client",
+      "clientName": "Cliente",
+      "restaurantId": "1774146889982",
+      "restaurantName": "Mirestaurante",
+      "items": [
+        {
+          "name": "Webitosssss",
+          "price": "1",
+          "qty": 3
+        }
+      ],
+      "totalMXN": 3,
+      "totalSOL": 0.0012,
+      "txSignature": "44oqwYqSVZEcr7CpjH76K4w81ymmxDRs87KqYReKZ92PsankQv8MfXCZC5ZJj49Rmfh4PynHSYHkQtPjvxSgW9PE",
+      "timestamp": "2026-03-22T02:57:06.431Z",
+      "status": "confirmed"
+    }
+  ]
+}

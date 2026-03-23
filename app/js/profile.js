@@ -1,0 +1,229 @@
+// js/profile.js — User Profile screen
+import { getSession, showScreen, SOL_RATE, API, shortAddr } from './app.js';
+
+export function confirmLogout() {
+  const ok = confirm('¿Estás seguro de que deseas cerrar sesión?');
+  if (ok) {
+    localStorage.removeItem('solana_session');
+    location.reload();
+  }
+}
+
+// ── Calendar state ──────────────────────────────────────────────
+let calDate = new Date();
+let reservationDates = []; // array of 'YYYY-MM-DD' strings
+
+// ── Open / Close ────────────────────────────────────────────────
+export function openProfile() {
+  const session = getSession();
+  if (!session) return;
+  showScreen('screen-profile');
+  renderProfileInfo(session);
+  renderWalletCard(session);
+  loadPurchaseHistory(session);
+  initCalendar(session);
+}
+
+export function closeProfile() {
+  showScreen('screen-main');
+}
+
+// ── Profile info ────────────────────────────────────────────────
+function renderProfileInfo(session) {
+  // Avatar (use the same dog avatar or session photo)
+  const avatarEl = document.getElementById('profile-avatar-img');
+  if (avatarEl) {
+    avatarEl.style.backgroundImage =
+      "url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=200&q=80')";
+  }
+
+  // Name
+  const nameEl = document.getElementById('profile-username');
+  if (nameEl) nameEl.textContent = session.name || 'Usuario';
+
+  // Bio / description
+  const bioEl = document.getElementById('profile-bio');
+  if (bioEl) bioEl.textContent = session.bio || 'Usuario experto en gastronomía';
+
+  // Delipoints
+  const points = session.delipoints || 0; // 1 point = 1 MXN
+  const mxn = points.toFixed(2);
+  const sol = (points / SOL_RATE).toFixed(4);
+  const mxnEl = document.getElementById('profile-delipoints-mxn');
+  const solEl = document.getElementById('profile-delipoints-sol');
+  if (mxnEl) mxnEl.textContent = `$ ${mxn} MXN`;
+  if (solEl) solEl.textContent = `${sol} SOL`;
+}
+
+// ── Wallet card ─────────────────────────────────────────────────
+function renderWalletCard(session) {
+  const statusEl  = document.getElementById('profile-wallet-status-label');
+  const addrEl    = document.getElementById('profile-wallet-address');
+  const linkEl    = document.getElementById('profile-wallet-link');
+
+  const addr = session.wallet || '';
+  if (addr) {
+    if (statusEl) {
+      statusEl.textContent = 'Wallet conectada';
+      statusEl.classList.add('connected');
+    }
+    if (addrEl) addrEl.textContent = shortAddr(addr);
+    if (linkEl) {
+      linkEl.style.display = 'flex';
+      linkEl.href = `https://explorer.solana.com/address/${addr}?cluster=devnet`;
+    }
+  } else {
+    if (statusEl) statusEl.textContent = 'Sin wallet conectada';
+    if (addrEl) addrEl.textContent = '—';
+    if (linkEl) linkEl.style.display = 'none';
+  }
+}
+
+// ── Reservation Calendar ────────────────────────────────────────
+async function initCalendar(session) {
+  // Load reservations from API (or use empty array if endpoint doesn't exist yet)
+  try {
+    const res = await fetch(`${API}/api/reservations?userId=${session.id}`);
+    if (res.ok) {
+      const data = await res.json();
+      reservationDates = data.map(r => r.date); // expected 'YYYY-MM-DD'
+    } else {
+      reservationDates = session.reservations || [];
+    }
+  } catch {
+    reservationDates = session.reservations || [];
+  }
+  calDate = new Date();
+  buildCalSelectors();
+  profileCalRender();
+}
+
+function buildCalSelectors() {
+  const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const monthSel = document.getElementById('cal-month');
+  const yearSel  = document.getElementById('cal-year');
+  if (!monthSel || !yearSel) return;
+
+  monthSel.innerHTML = months.map((m, i) =>
+    `<option value="${i}" ${i === calDate.getMonth() ? 'selected' : ''}>${m}</option>`
+  ).join('');
+
+  const curYear = calDate.getFullYear();
+  yearSel.innerHTML = '';
+  for (let y = curYear - 2; y <= curYear + 2; y++) {
+    yearSel.innerHTML += `<option value="${y}" ${y === curYear ? 'selected' : ''}>${y}</option>`;
+  }
+}
+
+export function profileCalRender() {
+  const monthSel = document.getElementById('cal-month');
+  const yearSel  = document.getElementById('cal-year');
+  if (!monthSel || !yearSel) return;
+  const month = parseInt(monthSel.value);
+  const year  = parseInt(yearSel.value);
+  calDate = new Date(year, month, 1);
+  renderCalGrid(year, month);
+}
+
+export function profileCalPrev() {
+  calDate.setMonth(calDate.getMonth() - 1);
+  const monthSel = document.getElementById('cal-month');
+  const yearSel  = document.getElementById('cal-year');
+  if (monthSel) monthSel.value = calDate.getMonth();
+  if (yearSel)  yearSel.value  = calDate.getFullYear();
+  renderCalGrid(calDate.getFullYear(), calDate.getMonth());
+}
+
+export function profileCalNext() {
+  calDate.setMonth(calDate.getMonth() + 1);
+  const monthSel = document.getElementById('cal-month');
+  const yearSel  = document.getElementById('cal-year');
+  if (monthSel) monthSel.value = calDate.getMonth();
+  if (yearSel)  yearSel.value  = calDate.getFullYear();
+  renderCalGrid(calDate.getFullYear(), calDate.getMonth());
+}
+
+function renderCalGrid(year, month) {
+  const grid = document.getElementById('profile-cal-grid');
+  if (!grid) return;
+
+  const today = new Date();
+  const firstDay = new Date(year, month, 1).getDay(); // 0=Sun
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  const dayHeaders = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+  let html = dayHeaders.map(d => `<div class="cal-day-header">${d}</div>`).join('');
+
+  // Empty cells before first day
+  for (let i = 0; i < firstDay; i++) {
+    html += `<div class="cal-day empty"></div>`;
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const pad = n => String(n).padStart(2, '0');
+    const dateStr = `${year}-${pad(month + 1)}-${pad(d)}`;
+    const isToday =
+      d === today.getDate() && month === today.getMonth() && year === today.getFullYear();
+    const hasReservation = reservationDates.includes(dateStr);
+    const classes = [
+      'cal-day',
+      isToday ? 'today' : '',
+      hasReservation ? 'has-reservation' : ''
+    ].filter(Boolean).join(' ');
+    html += `<div class="${classes}">${d}</div>`;
+  }
+
+  grid.innerHTML = html;
+}
+
+// ── Purchase History ────────────────────────────────────────────
+async function loadPurchaseHistory(session) {
+  const container = document.getElementById('profile-purchases-list');
+  if (!container) return;
+
+  let purchases = [];
+  try {
+    const res = await fetch(`${API}/api/purchases?userId=${session.id}`);
+    if (res.ok) {
+      purchases = await res.json();
+    } else {
+      purchases = session.purchases || [];
+    }
+  } catch {
+    purchases = session.purchases || [];
+  }
+
+  if (!purchases.length) {
+    container.innerHTML = `<div class="profile-empty">Aún no tienes compras registradas.</div>`;
+    return;
+  }
+
+  // Sort by date descending
+  purchases.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  container.innerHTML = purchases.map(p => {
+    const date = p.date ? formatDate(p.date) : '—';
+    const points = p.delipoints != null ? p.delipoints : Math.round((p.total || 0) * 0.05);
+    return `
+      <div class="purchase-card">
+        <div class="purchase-row">
+          <span class="purchase-biz">${p.businessName || p.restaurant || 'Negocio'}</span>
+          <span class="purchase-total">$${(p.total || 0).toFixed(2)}</span>
+        </div>
+        <div class="purchase-meta">
+          <span>📅 ${date}</span>
+          <span class="purchase-points">+${points} Delipoints 🎁</span>
+        </div>
+        ${p.description ? `<div class="purchase-desc">${p.description}</div>` : ''}
+      </div>`;
+  }).join('');
+}
+
+function formatDate(dateStr) {
+  try {
+    const d = new Date(dateStr + 'T12:00:00');
+    return d.toLocaleDateString('es-MX', { day: '2-digit', month: 'long', year: 'numeric' });
+  } catch {
+    return dateStr;
+  }
+}

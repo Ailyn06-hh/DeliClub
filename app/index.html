@@ -1,77 +1,24 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
-  <title>Solana Micro Donations</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeliClub - Premium Platform</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-<h1>Solana Micro Donations</h1>
+<div class="container" id="app-container">
+  <!-- Views are loaded dynamically by js/app.js -->
+</div>
 
-<button onclick="connectWallet()">Connect Phantom</button>
+<!-- Floating Cart Button -->
+<div id="cart-floating" class="cart-floating" onclick="showCart()">🛒 Ver Carrito (<span id="cart-count">0</span>)</div>
 
-<br><br>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/buffer/6.0.3/buffer.min.js"></script>
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+<script src="https://unpkg.com/@coral-xyz/anchor@latest/dist/browser.anchor.min.js"></script>
 
-<input id="name" placeholder="Campaign name"/>
-<input id="desc" placeholder="Description"/>
-<input id="goal" placeholder="Goal (lamports)"/>
-
-<button onclick="createCampaign()">Create Campaign</button>
-
-<br><br>
-
-<input id="campaign" placeholder="Campaign Address"/>
-<input id="amount" placeholder="Amount (lamports)"/>
-
-<button onclick="donate()">Donate</button>
-
-<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
-<script>
-
-let provider;
-
-const programId = "D6E6bhYFzxJfmpKZAyxHpv9k7faX7ETUQDfYT7wj9KtJ";
-
-const connection = new solanaWeb3.Connection(
-  solanaWeb3.clusterApiUrl("devnet")
-);
-
-async function connectWallet(){
-
-  provider = window.solana;
-
-  if(!provider){
-    alert("Install Phantom");
-    return;
-  }
-
-  await provider.connect();
-
-  alert("Connected: " + provider.publicKey.toString());
-
-}
-
-async function createCampaign(){
-
-  const name = document.getElementById("name").value;
-  const desc = document.getElementById("desc").value;
-  const goal = parseInt(document.getElementById("goal").value);
-
-  console.log("Create campaign", name, desc, goal);
-
-}
-
-async function donate(){
-
-  const campaign = document.getElementById("campaign").value;
-  const amount = parseInt(document.getElementById("amount").value);
-
-  console.log("Donate", campaign, amount);
-
-}
-
-</script>
-
+<script type="module" src="js/app.js"></script>
 </body>
 </html>

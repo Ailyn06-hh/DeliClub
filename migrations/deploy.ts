@@ -10,3 +10,4 @@ module.exports = async function (provider: anchor.AnchorProvider) {
 
   // Add your deploy script here.
 };
+ 
