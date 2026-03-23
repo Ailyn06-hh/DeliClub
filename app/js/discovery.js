@@ -124,21 +124,21 @@ export function searchRestaurants(query) {
 
 export async function renderDiscovery() {
   const list = document.getElementById('client-discovery-list');
-  if(!list) return;
+  if (!list) return;
   list.innerHTML = '<div class="loading">Cargando...</div>';
   try {
-    const res = await fetch(API+'/api/restaurants');
+    const res = await fetch(API + '/api/restaurants');
     allRestaurants = await res.json();
     activeFilter = 'Todo';
     searchQuery = '';
     renderFilterChips(allRestaurants);
     renderRestaurantCards(allRestaurants);
-  } catch(e) { list.innerHTML = '<p style="color:red">Error cargando restaurantes.</p>'; }
+  } catch (e) { list.innerHTML = '<p style="color:red">Error cargando restaurantes.</p>'; }
 }
 
 export async function viewMenu(restaurantId) {
   try {
-    const res = await fetch(API+'/api/restaurants/'+restaurantId+'/menu');
+    const res = await fetch(API + '/api/restaurants/' + restaurantId + '/menu');
     const data = await res.json();
     const container = document.getElementById('client-discovery-list');
     // Hide filter chips and search while viewing menu
@@ -155,17 +155,32 @@ export async function viewMenu(restaurantId) {
       <div class="detail-header">
         <a class="back-arrow" onclick="backToDiscovery()">←</a>
         <h2 class="rest-name">${data.name}</h2>
-        <span class="detail-header rest-rating">${data.rating || '5.0'} <span class="stars" style="color:#e8a84c;font-size:18px;">${renderStars(data.rating)}</span></span>
+        <span class="detail-header-rating">
+          <span class="rating-num">${data.rating || '5.0'}</span>
+          <span class="stars" style="color:#e8a84c;font-size:18px;">${renderStars(data.rating)}</span>
+        </span>
       </div>
-      <div class="detail-schedule"><strong>Horarios:</strong> ${scheduleStr} de 8:00 a.m. a 10 p.m.</div>
+      <div class="detail-schedule-wrap">
+        <span class="schedule-label">Horarios:</span> <span class="schedule-text">${scheduleStr} de 8:00 a.m. a 10 p.m.</span>
+      </div>
       <img class="detail-hero" src="${data.img || 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80'}" alt="${data.name}" />
     `;
     if (data.desc) html += `<p class="detail-desc">${data.desc}</p>`;
     if (data.wallet) {
       html += `<div style="text-align:center;margin-bottom:15px;"><span style="background:#1a1a2e;color:#14F195;padding:6px 12px;border-radius:10px;font-size:11px;">🟣 Acepta pagos en SOL · ${shortAddr(data.wallet)}</span></div>`;
     }
-    html += `<button class="btn-reserve" onclick="alert('Función de reservación próximamente.')">¿Buscas Reservar?</button>`;
-    html += `<div class="menu-section-header"><h3>Menú</h3><input class="menu-search" type="text" placeholder="Buscar platillo..." oninput="filterMenuItems(this.value)" /></div>`;
+    html += `<button class="btn-reserve-new" onclick="alert('Función de reservación próximamente.')">¿Buscas Reservar?</button>`;
+    html += `<hr class="menu-divider" />`;
+
+    html += `
+      <div class="menu-section-header-new">
+        <h3>Menú</h3>
+        <div class="menu-search-wrapper">
+          <input class="menu-search-new" type="text" placeholder="Buscar platillo..." oninput="filterMenuItems(this.value)" />
+          <span class="search-icon-new">🔍</span>
+        </div>
+      </div>
+    `;
 
     if (!data.menu || data.menu.length === 0) {
       html += '<p style="color:#aaa;text-align:center;">Este restaurante aún no tiene menú.</p>';
@@ -174,18 +189,16 @@ export async function viewMenu(restaurantId) {
       data.menu.forEach((cat, idx) => {
         const imgUrl = catImages[idx % catImages.length];
         html += `
-          <div class="menu-cat-card" data-category>
-            <img class="menu-cat-card-img" src="${imgUrl}" alt="${cat.name}" />
-            <div class="menu-cat-card-body">
-              <h4>${cat.name}</h4>
-              <ul>
+          <div class="menu-cat-card-new" data-category>
+            <h4>${cat.name}</h4>
+            <img class="menu-cat-card-img-new" src="${cat.catImg || imgUrl}" alt="${cat.name}" />
+            <div class="menu-cat-footer">
+              <ul class="menu-item-list-bullets">
                 ${cat.items.map(it => `
-                  <li data-item-name="${it.name.toLowerCase()}" style="display:flex;justify-content:space-between;align-items:center;list-style:none;padding:5px 0;">
-                    <div><strong>${it.name}</strong>${it.price ? ' — $'+it.price+' MXN' : ''}<br><span class="sol-price">≈ ◎${((parseFloat(it.price)||0)/SOL_RATE).toFixed(6)} SOL</span></div>
-                    ${data.wallet ? `<button class="cart-item-btn" onclick="event.stopPropagation();addToCart({name:'${it.name.replace(/'/g,"\\'")}',price:'${it.price}'},'${restaurantId}','${data.name.replace(/'/g,"\\'")}','${data.wallet}')">+</button>` : ''}
-                  </li>
+                  <li data-item-name="${it.name.toLowerCase()}">${it.name}</li>
                 `).join('')}
               </ul>
+              <button class="btn-ver" onclick="viewCategory('${restaurantId}', '${cat.name.replace(/'/g, "\\'")}')">Ver</button>>
             </div>
           </div>
         `;
@@ -193,7 +206,7 @@ export async function viewMenu(restaurantId) {
       html += '</div>';
     }
     container.innerHTML = html;
-  } catch(e) { alert("Error cargando menú."); }
+  } catch (e) { alert("Error cargando menú."); }
 }
 
 export function backToDiscovery() {
@@ -219,3 +232,60 @@ export function filterMenuItems(query) {
     card.style.display = (!q || hasMatch) ? '' : 'none';
   });
 }
+
+export async function viewCategory(restaurantId, categoryName) {
+  try {
+    const res = await fetch(API + '/api/restaurants/' + restaurantId + '/menu');
+    const data = await res.json();
+    const container = document.getElementById('client-discovery-list');
+
+    const cat = data.menu.find(c => c.name === categoryName);
+    if (!cat) return;
+
+    let html = `
+      <div class="detail-header">
+        <a class="back-arrow" onclick="viewMenu('${restaurantId}')">←</a>
+        <h2 class="rest-name">${data.name}</h2>
+        <span class="detail-header-rating">
+          <span class="rating-num">${data.rating || '5.0'}</span>
+          <span class="stars" style="color:#e8a84c;font-size:18px;">${renderStars(data.rating)}</span>
+        </span>
+      </div>
+      <h3 class="category-hero-title">${cat.name}</h3>
+      <img class="category-hero-img" src="${cat.catImg || 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80'}" alt="${cat.name}" />
+    `;
+
+    html += '<div class="category-items-container">';
+    cat.items.forEach((it, idx) => {
+      const escapedName = it.name.replace(/'/g, "\\'");
+      const itemId = 'item-' + idx;
+      const defaultImg = 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80';
+      html += `
+        <div class="item-card-detail">
+          <div class="item-card-col-left">
+            <h4 class="item-detail-name">${it.name}</h4>
+            <p class="item-detail-desc">${it.desc || ''}</p>
+            <div class="item-price">$ ${it.price || '0.0'}</div>
+            <button class="btn-add-order" onclick="event.stopPropagation(); addToCart({name:'${escapedName}',price:'${it.price || 0}'},'${restaurantId}','${data.name.replace(/'/g, "\\'")}', '${data.wallet || ''}'); showAddedBadge('${itemId}')">Agregar al pedido</button>
+          </div>
+          <div class="item-card-col-right">
+            <img class="item-detail-img" src="${it.itemImg || defaultImg}" alt="${it.name}" />
+            <div id="added-badge-${itemId}" class="added-to-order-badge" style="display:none;">Agregaste este producto a tu pedido</div>
+          </div>
+        </div>
+      `;
+    });
+    html += '</div>';
+
+    container.innerHTML = html;
+  } catch (e) { console.error(e); alert("Error cargando categoría."); }
+}
+
+export function showAddedBadge(itemId) {
+  const badge = document.getElementById('added-badge-' + itemId);
+  if (badge) {
+    badge.style.display = 'block';
+    setTimeout(() => { badge.style.display = 'none'; }, 3000);
+  }
+}
+
