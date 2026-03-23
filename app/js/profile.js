@@ -23,17 +23,41 @@ export function closeEditProfile() {
   document.getElementById('profile-edit-modal').style.display = 'none';
 }
 
-export function saveProfileChanges() {
+export async function saveProfileChanges() {
   const session = getSession();
   if (!session) return;
   session.name = document.getElementById('edit-profile-name').value.trim();
   session.bio = document.getElementById('edit-profile-bio').value.trim();
   session.avatar = document.getElementById('edit-profile-avatar').value.trim();
   session.wallet = document.getElementById('edit-profile-wallet').value.trim();
+
+  try {
+    const res = await fetch(`${API}/api/users/${session.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: session.name,
+        bio: session.bio,
+        avatar: session.avatar,
+        wallet: session.wallet
+      })
+    });
+    if (!res.ok) console.error('Failed to sync profile changes to server');
+  } catch (err) {
+    console.error('Error syncing profile:', err);
+  }
+
   localStorage.setItem('solana_session', JSON.stringify(session));
   closeEditProfile();
   renderProfileInfo(session);
   renderWalletCard(session);
+  
+  const headerAvatarEl = document.getElementById('header-avatar');
+  const avatarUrl = session.avatar || 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=200&q=80';
+  if (headerAvatarEl) headerAvatarEl.style.backgroundImage = `url('${avatarUrl}')`;
+  
+  const labelRoleEl = document.getElementById('label-role');
+  if (labelRoleEl) labelRoleEl.innerText = session.name || '';
 }
 
 // ── Calendar state ──────────────────────────────────────────────

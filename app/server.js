@@ -72,7 +72,7 @@ app.post('/api/register', async (req, res) => {
     });
   }
   await db.write();
-  res.json({ user: { id: user.id, name: user.name, type: user.type, wallet: user.wallet } });
+  res.json({ user: { id: user.id, name: user.name, type: user.type, wallet: user.wallet, bio: user.bio || '', avatar: user.avatar || '' } });
 });
 
 // --- Update wallet ---
@@ -96,19 +96,44 @@ app.put('/api/users/:id/wallet', async (req, res) => {
   res.json({ success: true, wallet });
 });
 
+// --- Update Profile ---
+app.put('/api/users/:id', async (req, res) => {
+  const { name, bio, avatar, wallet } = req.body;
+  
+  await db.read();
+  const user = db.data.users.find(u => u.id === req.params.id);
+  if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
+  
+  if (name !== undefined) user.name = name;
+  if (bio !== undefined) user.bio = bio;
+  if (avatar !== undefined) user.avatar = avatar;
+  if (wallet !== undefined) user.wallet = wallet;
+  
+  // If partner, also update restaurant details
+  if (user.type === 'Partner') {
+    const rest = db.data.restaurants.find(r => r.ownerId === user.id);
+    if (rest) {
+      if (wallet !== undefined) rest.wallet = wallet;
+    }
+  }
+  
+  await db.write();
+  res.json({ success: true, user });
+});
+
 app.post('/api/login', async (req, res) => {
   const { name, password } = req.body;
   if (!name) return res.status(400).json({ error: 'Nombre requerido' });
   
   // Hardcoded test accounts
   if (name.toLowerCase() === 'cliente' && password === 'prueba')
-    return res.json({ user: { id: 'test-client', name: 'Cliente', type: 'Cliente', wallet: '' } });
+    return res.json({ user: { id: 'test-client', name: 'Cliente', type: 'Cliente', wallet: '', bio: '', avatar: '' } });
   if (name.toLowerCase() === 'partner' && password === 'pruebap')
-    return res.json({ user: { id: 'test-partner', name: 'Partner', type: 'Partner', wallet: '' } });
+    return res.json({ user: { id: 'test-partner', name: 'Partner', type: 'Partner', wallet: '', bio: '', avatar: '' } });
   
   const user = db.data.users.find(u => u.name.toLowerCase() === name.toLowerCase() && u.password === password);
   if (!user) return res.status(401).json({ error: 'Credenciales inválidas' });
-  res.json({ user: { id: user.id, name: user.name, type: user.type, wallet: user.wallet || '' } });
+  res.json({ user: { id: user.id, name: user.name, type: user.type, wallet: user.wallet || '', bio: user.bio || '', avatar: user.avatar || '' } });
 });
 
 // --- RESTAURANTS ---
