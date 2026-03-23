@@ -148,7 +148,19 @@ app.post('/api/login', async (req, res) => {
   }
   
   if (!user) return res.status(401).json({ error: 'Credenciales inválidas' });
-  res.json({ user: { id: user.id, name: user.name, type: user.type, wallet: user.wallet || '', bio: user.bio || '', avatar: user.avatar || '', delipoints: user.delipoints || 0 } });
+  
+  // Recalcular saldo delipoints basado en historial (para cuentas previas sin el guardado)
+  const userOrders = db.data.orders.filter(o => o.clientId === user.id);
+  let points = 0;
+  for (const o of userOrders) {
+    const earned = o.earnedDelipoints != null ? o.earnedDelipoints : Math.round((o.totalMXN || o.total || 0) * 0.05);
+    const used = o.usedDelipoints || 0;
+    points += (earned - used);
+  }
+  user.delipoints = points > 0 ? points : 0;
+  await db.write();
+
+  res.json({ user: { id: user.id, name: user.name, type: user.type, wallet: user.wallet || '', bio: user.bio || '', avatar: user.avatar || '', delipoints: user.delipoints } });
 });
 
 // --- RESTAURANTS ---
