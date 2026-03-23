@@ -45,12 +45,12 @@
       <div class="rd-detail-card-title center">Pedidos</div>
       <div class="rd-large-icon">🔥</div>
     </div>
-    <div class="rd-detail-card bg-cream center-content">
+    <div class="rd-detail-card bg-cream center-content" style="cursor: pointer;" onclick="openMenuActivo()">
       <div class="rd-detail-card-title center">Menú Activo</div>
       <div class="rd-large-icon">📖</div>
       <div class="rd-detail-subtext small">1 platillos/secciones</div>
     </div>
-    <div class="rd-detail-card bg-cream center-content full-width" style="margin-top: 15px; width: 50%; margin-left: auto; margin-right: auto;">
+    <div class="rd-detail-card bg-cream center-content full-width" style="margin-top: 15px; width: 50%; margin-left: auto; margin-right: auto; cursor: pointer;" onclick="openReservacionesClicli()">
       <div class="rd-detail-card-title center">Nuevas<br>Reservas</div>
       <div class="rd-large-icon">📅</div>
     </div>
@@ -58,18 +58,12 @@
 
   <!-- Ecosistema BlockChain y Recompensas -->
   <div class="rd-detail-card bg-cream mt-20">
-    <div class="rd-detail-card-title flex-row-between">
-      Ecosistema BlockChain y Recompensas
-      <span class="rd-link-icon">🔗</span>
-    </div>
-    <div class="rd-rewards-row">
-      <div class="rd-reward-col">
-        <div class="rd-reward-label">Tokens Otorgados</div>
-        <div class="rd-reward-value" id="rd-tokens-awarded">0 Tokens</div>
-      </div>
-      <div class="rd-reward-divider"></div>
-      <div class="rd-reward-col">
-        <div class="rd-reward-label">Delipoints Canjeados</div>
+    <div class="rd-rewards-row" style="margin-top: 0;">
+      <div class="rd-reward-col" style="flex: 1;">
+        <div class="rd-reward-label" style="display: flex; justify-content: center; align-items: center; gap: 8px;">
+          Delipoints Canjeados
+          <span class="rd-link-icon" style="font-size: 16px;">🔗</span>
+        </div>
         <div class="rd-reward-value" id="rd-delipoints-mxn">$0.00 MXN</div>
         <div class="rd-reward-value" id="rd-delipoints-sol" style="font-size: 12px; color: #9945FF; margin-top: 4px;">0.000 SOL</div>
       </div>
