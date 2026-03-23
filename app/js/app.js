@@ -28,7 +28,8 @@ async function loadViews() {
     'views/register-user.html',
     'views/register-restaurant.html',
     'views/dashboard.html',
-    'views/profile.html'
+    'views/profile.html',
+    'views/reservations.html'
   ];
   
   for (const file of viewFiles) {
@@ -51,6 +52,7 @@ import { renderDiscovery, viewMenu, viewCategory, showAddedBadge, filterMenuItem
 import { renderSchedule, syncSchedule, addCategory, addItem, renderPartnerMenu, savePartnerInfo, setPartnerMenu, partnerMenu } from './partner.js';
 import { createCampaign, fetchCampaigns, donate } from './solana.js';
 import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCalNext, confirmLogout, openEditProfile, closeEditProfile, saveProfileChanges } from './profile.js';
+import { openReservations, resChangeQty, resCalRender, resCalPrev, resCalNext, resSelectDate, confirmReservation } from './reservations.js';
 
 export async function showMain() {
   const session = getSession();
@@ -124,6 +126,14 @@ window.confirmLogout = confirmLogout;
 window.openEditProfile = openEditProfile;
 window.closeEditProfile = closeEditProfile;
 window.saveProfileChanges = saveProfileChanges;
+
+window.openReservations = openReservations;
+window.resChangeQty = resChangeQty;
+window.resCalRender = resCalRender;
+window.resCalPrev = resCalPrev;
+window.resCalNext = resCalNext;
+window.resSelectDate = resSelectDate;
+window.confirmReservation = confirmReservation;
 
 // ========== INITIALIZE ==========
 try { if(typeof buffer!=='undefined') window.Buffer=buffer.Buffer; } catch(e) {}
