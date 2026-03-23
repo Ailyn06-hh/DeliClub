@@ -400,6 +400,25 @@
       "txSignature": "5ob4X5iJ7RPRYPjF2ghdDBoPp62d7PJd25xYEN8N64YFt3xpxTPqweiyLE9pLdAShPn9S38BTuxFGiPi6D7Ynv2g",
       "timestamp": "2026-03-23T08:16:06.905Z",
       "status": "confirmed"
+    },
+    {
+      "id": "1774255977918",
+      "clientId": "1774242403733",
+      "clientName": "Leon Sabroso K",
+      "restaurantId": "1774141606946",
+      "restaurantName": "La piazza",
+      "items": [
+        {
+          "name": "Frittata di Verdure",
+          "price": "220.0",
+          "qty": 1
+        }
+      ],
+      "totalMXN": 220,
+      "totalSOL": 0.088,
+      "txSignature": "4KxaGknzW31LXhgdaFdb7RctxXRipUt6kvBiqnHjzyLXpQwLg5NRxyViFkP9bvvULBtddUo5myJ2CAyA8cd17RcJ",
+      "timestamp": "2026-03-23T08:52:57.918Z",
+      "status": "confirmed"
     }
   ]
 }

@@ -239,7 +239,7 @@ async function loadPurchaseHistory(session) {
 
   let purchases = [];
   try {
-    const res = await fetch(`${API}/api/purchases?userId=${session.id}`);
+    const res = await fetch(`${API}/api/orders?userId=${session.id}&role=${session.type || 'Cliente'}`);
     if (res.ok) {
       purchases = await res.json();
     } else {
@@ -250,30 +250,37 @@ async function loadPurchaseHistory(session) {
   }
 
   if (!purchases.length) {
-    container.innerHTML = `<div class="profile-empty">Aún no tienes compras registradas.</div>`;
+    container.innerHTML = `<div class="profile-empty" style="text-align: center; color: #999;">Aún no tienes compras registradas.</div>`;
     return;
   }
 
   // Sort by date descending
-  purchases.sort((a, b) => new Date(b.date) - new Date(a.date));
+  purchases.sort((a, b) => new Date(b.timestamp || b.date || 0) - new Date(a.timestamp || a.date || 0));
 
   container.innerHTML = purchases.map(p => {
-    let dateStr = p.date ? formatDate(p.date) : '—';
-    // Format "21 - Marzo - 2026"
+    let dateStr = '—';
+    const dateVal = p.timestamp || p.date;
     try {
-      if(p.date) {
-        let d = new Date(p.date + 'T12:00:00');
+      if(dateVal) {
+        let d = new Date(dateVal);
         let m = d.toLocaleDateString('es-MX', { month: 'long' });
         m = m.charAt(0).toUpperCase() + m.slice(1);
         dateStr = `${d.getDate()} - ${m} - ${d.getFullYear()}`;
       }
     } catch(e) {}
     
-    const points = p.delipoints != null ? p.delipoints : Math.round((p.total || 0) * 0.05);
+    const itemsHtml = (p.items && p.items.length > 0)
+      ? p.items.map(i => `${i.qty}x ${i.name}`).join(', ')
+      : '';
+
+    const total = p.totalMXN || p.total || 0;
+    const points = p.delipoints != null ? p.delipoints : Math.round(total * 0.05);
+
     return `
       <div class="purchase-card-new">
-        <div class="purchase-title-new">${p.businessName || p.restaurant || 'Negocio'}</div>
-        <div class="purchase-row-new">Total: $${(p.total || 0).toFixed(2)}</div>
+        <div class="purchase-title-new">${p.restaurantName || p.businessName || p.restaurant || 'Negocio'}</div>
+        ${itemsHtml ? `<div class="purchase-row-new" style="color: #555; font-size: 13px; margin-bottom: 6px;">Productos: ${itemsHtml}</div>` : ''}
+        <div class="purchase-row-new">Total: $${total.toFixed(2)}</div>
         <div class="purchase-row-new">Fecha: ${dateStr}</div>
         <div class="purchase-row-new">Recompensa obtenida: $${points.toFixed(2)}</div>
       </div>`;
