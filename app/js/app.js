@@ -35,8 +35,9 @@ async function loadViews() {
     'views/reservations.html',
     'views/user-reservations.html',
     'views/restaurant-details.html',
-    'views/partner-orders.html'
-
+    'views/partner-orders.html',
+    'views/menu-activo.html',
+    'views/agregar-menu.html'
   ];
   
   for (const file of viewFiles) {
@@ -65,6 +66,7 @@ import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCal
 import { openReservations, resChangeQty, resCalRender, resCalPrev, resCalNext, resSelectDate, confirmReservation } from './reservations.js';
 import { renderRestaurantDetails, saveRestaurantSchedule } from './restaurant-details.js';
 import { openPartnerOrders, closePartnerOrders, filterPartnerOrders, acceptOrder, rejectOrder } from './partner-orders.js';
+import { openAgregarMenu, amUpdateSolConversion, amUpdateStatusLabel, amDiscardDraft, amSubmitForm, amPreviewImage } from './agregar-menu.js';
 
 // Restaurant Details logic
 export function openRestaurantDetails(id) {
@@ -77,6 +79,13 @@ export function backToSucursales() {
   showScreen('screen-sucursales');
 }
 
+// Menu Activo Logic
+export function openMenuActivo() {
+  showScreen('screen-menu-activo');
+}
+export function backToRestaurantDetails() {
+  showScreen('screen-restaurant-details');
+}
 
 export async function showMain() {
   const session = getSession();
@@ -166,6 +175,22 @@ window.closePartnerOrders = closePartnerOrders;
 window.filterPartnerOrders = filterPartnerOrders;
 window.acceptOrder = acceptOrder;
 window.rejectOrder = rejectOrder;
+
+// Menu Activo
+export function backToMenuActivo() {
+  showScreen('screen-menu-activo');
+}
+window.openMenuActivo = openMenuActivo;
+window.backToRestaurantDetails = backToRestaurantDetails;
+window.backToMenuActivo = backToMenuActivo;
+
+// Agregar Menu
+window.openAgregarMenu = openAgregarMenu;
+window.amUpdateSolConversion = amUpdateSolConversion;
+window.amUpdateStatusLabel = amUpdateStatusLabel;
+window.amDiscardDraft = amDiscardDraft;
+window.amSubmitForm = amSubmitForm;
+window.amPreviewImage = amPreviewImage;
 
 
 window.openReservations = openReservations;

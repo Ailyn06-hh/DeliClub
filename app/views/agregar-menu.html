@@ -1,0 +1,135 @@
+<!-- Agregar Menu View -->
+<div id="screen-agregar-menu" class="screen">
+  <!-- Header -->
+  <div class="suc-header" style="margin-bottom: 20px;">
+    <span class="suc-back-arrow" onclick="backToMenuActivo()">←</span>
+    <h1 class="suc-title" style="text-align: center; width: 100%; margin-left: -26px;">Agregar Menú</h1>
+  </div>
+
+  <div class="am-form-container">
+    <div class="am-step-title">Paso 1:</div>
+    
+    <label class="am-label">Nombre del platillo</label>
+    <input type="text" id="am-name" class="am-input" placeholder="">
+
+    <div class="am-row-split">
+      <div class="am-col-desc">
+        <label class="am-label">Descripcion</label>
+        <textarea id="am-desc" class="am-textarea"></textarea>
+      </div>
+      <div class="am-col-image">
+        <label class="am-camera-box">
+          <span class="am-camera-icon">📷</span>
+          <span class="am-camera-text">ingresar imagen</span>
+          <img id="am-image-preview" style="display:none; width: 100%; height: 90px; object-fit: cover; border-radius: 12px; margin-top: 5px;" />
+          <input type="file" id="am-image" accept="image/*" style="display:none;" onchange="amPreviewImage(event)">
+        </label>
+      </div>
+    </div>
+
+    <div class="am-cat-container-main">
+      <h3 class="am-cat-main-title">SELECCIÓN DE MENÚ - CATEGORÍAS</h3>
+      
+      <div class="am-cat-grid">
+        <!-- Columna Izquierda -->
+        <div class="am-cat-col">
+          <div class="am-cat-block">
+            <div class="am-cat-block-title">Categorías principales</div>
+            <label class="am-cat-item"><span class="am-cat-text">Comida mexicana</span> <input type="checkbox" value="Comida mexicana" class="am-cat-cb" checked></label>
+            <label class="am-cat-item"><span class="am-cat-text">Comida italiana</span> <input type="checkbox" value="Comida italiana" class="am-cat-cb" checked></label>
+            <label class="am-cat-item"><span class="am-cat-text">Comida japonesa</span> <input type="checkbox" value="Comida japonesa" class="am-cat-cb" checked></label>
+            <label class="am-cat-item"><span class="am-cat-text">Comida china</span> <input type="checkbox" value="Comida china" class="am-cat-cb"></label>
+            <label class="am-cat-item"><span class="am-cat-text">Comida americana</span> <input type="checkbox" value="Comida americana" class="am-cat-cb"></label>
+            <label class="am-cat-item"><span class="am-cat-text">Comida mediterránea</span> <input type="checkbox" value="Comida mediterránea" class="am-cat-cb"></label>
+            <label class="am-cat-item"><span class="am-cat-text">Comida vegetariana</span> <input type="checkbox" value="Comida vegetariana" class="am-cat-cb"></label>
+            <label class="am-cat-item"><span class="am-cat-text">Comida vegana</span> <input type="checkbox" value="Comida vegana" class="am-cat-cb"></label>
+          </div>
+          
+          <div class="am-cat-block am-cat-block-highlight">
+            <div class="am-cat-block-title">🥗 Opciones saludables</div>
+            <label class="am-cat-item"><span class="am-cat-icon">🥗</span><span class="am-cat-text">Ensaladas</span> <input type="checkbox" value="Ensaladas" class="am-cat-cb" checked></label>
+            <label class="am-cat-item"><span class="am-cat-icon">🥗</span><span class="am-cat-text">Bowls</span> <input type="checkbox" value="Bowls" class="am-cat-cb" checked></label>
+            <label class="am-cat-item"><span class="am-cat-text">Jugos naturales</span> <input type="checkbox" value="Jugos naturales" class="am-cat-cb"></label>
+            <label class="am-cat-item"><span class="am-cat-text">Smoothies</span> <input type="checkbox" value="Smoothies" class="am-cat-cb" checked></label>
+          </div>
+        </div>
+        
+        <div class="am-cat-divider"></div>
+        
+        <!-- Columna Central -->
+        <div class="am-cat-col">
+          <div class="am-cat-block">
+            <div class="am-cat-block-title">🍔 Comida rápida</div>
+            <label class="am-cat-item"><span class="am-cat-text">Hamburguesas</span> <input type="checkbox" value="Hamburguesas" class="am-cat-cb" checked></label>
+            <label class="am-cat-item"><span class="am-cat-text">Hot dogs</span> <input type="checkbox" value="Hot dogs" class="am-cat-cb"></label>
+            <label class="am-cat-item"><span class="am-cat-text">Papas fritas</span> <input type="checkbox" value="Papas fritas" class="am-cat-cb" checked></label>
+            <label class="am-cat-item"><span class="am-cat-text">Alitas</span> <input type="checkbox" value="Alitas" class="am-cat-cb"></label>
+            <label class="am-cat-item"><span class="am-cat-icon">🍪</span><span class="am-cat-text">Nuggets</span> <input type="checkbox" value="Nuggets" class="am-cat-cb" checked></label>
+          </div>
+          
+          <div class="am-cat-block am-cat-block-highlight">
+            <div class="am-cat-block-title">🍰 Postres</div>
+            <label class="am-cat-item"><span class="am-cat-icon">🍰</span><span class="am-cat-text">Pasteles</span> <input type="checkbox" value="Pasteles" class="am-cat-cb"></label>
+            <label class="am-cat-item"><span class="am-cat-icon">🍦</span><span class="am-cat-text">Helados</span> <input type="checkbox" value="Helados" class="am-cat-cb" checked></label>
+            <label class="am-cat-item"><span class="am-cat-icon">🍩</span><span class="am-cat-text">Donas</span> <input type="checkbox" value="Donas" class="am-cat-cb"></label>
+            <label class="am-cat-item"><span class="am-cat-icon">🍪</span><span class="am-cat-text">Galletas</span> <input type="checkbox" value="Galletas" class="am-cat-cb" checked></label>
+          </div>
+        </div>
+        
+        <div class="am-cat-divider"></div>
+        
+        <!-- Columna Derecha -->
+        <div class="am-cat-col">
+          <div class="am-cat-block">
+            <div class="am-cat-block-title">🍕 Especialidades</div>
+            <label class="am-cat-item"><span class="am-cat-text">Pizzas</span> <input type="checkbox" value="Pizzas" class="am-cat-cb" checked></label>
+            <label class="am-cat-item"><span class="am-cat-text">Pastas</span> <input type="checkbox" value="Pastas" class="am-cat-cb"></label>
+            <label class="am-cat-item"><span class="am-cat-text">Sushi</span> <input type="checkbox" value="Sushi" class="am-cat-cb"></label>
+            <label class="am-cat-item"><span class="am-cat-text">Tacos</span> <input type="checkbox" value="Tacos" class="am-cat-cb"></label>
+            <label class="am-cat-item"><span class="am-cat-text">Mariscos</span> <input type="checkbox" value="Mariscos" class="am-cat-cb" checked></label>
+          </div>
+          
+          <div class="am-cat-block" style="margin-top: 25px;">
+            <div class="am-cat-block-title">☕ Bebidas</div>
+            <label class="am-cat-item"><span class="am-cat-icon">☕</span><span class="am-cat-text">Café</span> <input type="checkbox" value="Café" class="am-cat-cb" checked></label>
+            <label class="am-cat-item"><span class="am-cat-icon">🍵</span><span class="am-cat-text">Té</span> <input type="checkbox" value="Té" class="am-cat-cb" checked></label>
+            <label class="am-cat-item"><span class="am-cat-icon">🧋</span><span class="am-cat-text">Bebidas frias</span> <input type="checkbox" value="Bebidas frías" class="am-cat-cb"></label>
+            <label class="am-cat-item"><span class="am-cat-icon">☕</span><span class="am-cat-text">Bebidas calientes</span> <input type="checkbox" value="Bebidas calientes" class="am-cat-cb"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="am-divider">
+
+    <div class="am-step-title">Paso 2:</div>
+    <div class="am-price-card">
+      <div class="am-price-row">
+        <div class="am-price-col">
+          <label class="am-label-bold">Precios base (MXN)</label>
+          <input type="number" id="am-price-mxn" class="am-input-price" placeholder="$ 00.00 MXN" oninput="amUpdateSolConversion()">
+          <button class="am-btn-convert" onclick="amUpdateSolConversion()">Convertir</button>
+        </div>
+        <div class="am-price-divider"></div>
+        <div class="am-price-col">
+          <label class="am-label-bold">convertir en sol</label>
+          <div class="am-sol-display" id="am-price-sol">☀️ 0.000 SOL</div>
+        </div>
+      </div>
+      
+      <div class="am-status-row">
+        <label class="am-label">Estado:</label>
+        <select id="am-status-select" class="am-select" style="min-width: 150px; margin-left: 10px;">
+          <option value="true">Disponible</option>
+          <option value="false">No Disponible</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="am-step-title" style="margin-top: 30px;">Paso 3:</div>
+    <div class="am-actions">
+      <button class="am-btn-submit" onclick="amSubmitForm()">Crear platillo</button>
+      <button class="am-btn-discard" onclick="amDiscardDraft()">Eliminar borrador</button>
+    </div>
+  </div>
+</div>
