@@ -29,7 +29,8 @@ async function loadViews() {
     'views/register-restaurant.html',
     'views/dashboard.html',
     'views/profile.html',
-    'views/reservations.html'
+    'views/reservations.html',
+    'views/user-reservations.html'
   ];
   
   for (const file of viewFiles) {
@@ -51,7 +52,7 @@ import { addToCart, removeFromCart, updateCartUI, showCart, payWithSOL, clearCar
 import { renderDiscovery, viewMenu, viewCategory, showAddedBadge, filterMenuItems, filterByCategory, searchRestaurants, backToDiscovery } from './discovery.js';
 import { renderSchedule, syncSchedule, addCategory, addItem, renderPartnerMenu, savePartnerInfo, setPartnerMenu, partnerMenu } from './partner.js';
 import { createCampaign, fetchCampaigns, donate } from './solana.js';
-import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCalNext, confirmLogout, openEditProfile, closeEditProfile, saveProfileChanges } from './profile.js';
+import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCalNext, confirmLogout, openEditProfile, closeEditProfile, saveProfileChanges, openReservationsList, backToProfile } from './profile.js';
 import { openReservations, resChangeQty, resCalRender, resCalPrev, resCalNext, resSelectDate, confirmReservation } from './reservations.js';
 
 export async function showMain() {
@@ -126,6 +127,8 @@ window.confirmLogout = confirmLogout;
 window.openEditProfile = openEditProfile;
 window.closeEditProfile = closeEditProfile;
 window.saveProfileChanges = saveProfileChanges;
+window.openReservationsList = openReservationsList;
+window.backToProfile = backToProfile;
 
 window.openReservations = openReservations;
 window.resChangeQty = resChangeQty;
