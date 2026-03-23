@@ -401,3 +401,230 @@ a { color: var(--secondary-color); font-weight: bold; text-decoration: none; bor
 .modal-actions button { flex: 1; padding: 12px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; border: none; }
 .btn-cancel { background: #eee; color: #555; }
 .btn-save { background: #8b5b3f; color: white; }
+
+/* ========== RESTAURANT DASHBOARD ========== */
+.rd-welcome-title {
+  font-size: 28px; font-weight: 800; text-align: left;
+  margin: 0 0 18px 0; color: var(--secondary-color);
+}
+
+.rd-wallet-card {
+  background: #eae4de; border-radius: 20px; padding: 22px 24px;
+  margin-bottom: 20px;
+}
+.rd-wallet-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.rd-wallet-phantom-label {
+  font-size: 13px; font-weight: 700; color: #b08968;
+  margin-bottom: 4px;
+}
+.rd-wallet-address {
+  font-size: 14px; font-weight: 700; color: var(--text-color);
+  font-family: monospace; letter-spacing: 0.5px;
+}
+.rd-wallet-balance-side { text-align: right; }
+.rd-wallet-balance-label {
+  font-size: 12px; color: #999; margin-bottom: 4px;
+}
+.rd-wallet-balance-mxn {
+  font-size: 26px; font-weight: 800; color: var(--text-color);
+  margin-bottom: 2px;
+}
+.rd-wallet-balance-sol {
+  font-size: 13px; color: #888; display: flex; align-items: center;
+  justify-content: flex-end; gap: 5px;
+}
+.rd-sol-icon { font-size: 16px; }
+
+/* Two cards row */
+.rd-cards-row {
+  display: flex; gap: 14px; margin-bottom: 22px;
+}
+.rd-card-small {
+  flex: 1; background: #f0ebe5; border-radius: 18px;
+  padding: 18px; text-align: center;
+  transition: transform 0.2s;
+}
+.rd-card-small:hover { transform: translateY(-2px); }
+.rd-card-small-title {
+  font-size: 15px; font-weight: 700; color: var(--secondary-color);
+  font-style: italic; margin-bottom: 10px;
+}
+.rd-card-small-icon {
+  font-size: 38px; margin-bottom: 6px;
+}
+.rd-card-small-detail {
+  font-size: 12px; color: #888; font-weight: 600; margin-top: 4px;
+}
+
+/* Section title */
+.rd-section-title {
+  font-size: 22px; font-weight: 800; color: var(--text-color);
+  text-align: left; margin: 0 0 12px 0;
+}
+
+/* Alerts */
+.rd-alerts-container {
+  background: #eae4de; border-radius: 18px; padding: 16px 20px;
+  margin-bottom: 24px;
+}
+.rd-alert-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0; font-size: 14px; font-weight: 600;
+  color: var(--text-color);
+}
+.rd-alert-item + .rd-alert-item {
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+.rd-alert-icon { font-size: 20px; flex-shrink: 0; }
+.rd-alert-text { flex: 1; }
+
+/* Trends block */
+.rd-trends-block {
+  background: #f0ebe5; border-radius: 20px; padding: 22px;
+  display: flex; align-items: center; gap: 16px;
+  cursor: pointer; margin-bottom: 30px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.rd-trends-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+.rd-trends-star { font-size: 42px; }
+.rd-trends-title {
+  font-size: 18px; font-weight: 800; color: var(--secondary-color);
+  margin-bottom: 4px;
+}
+.rd-trends-sub {
+  font-size: 12px; color: #c97948; font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Trends Modal */
+.rd-trends-modal {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); z-index: 2000;
+  display: flex; justify-content: center; align-items: center;
+}
+.rd-trends-modal-content {
+  background: white; border-radius: 20px; padding: 35px 30px;
+  text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  max-width: 320px; width: 90%;
+  animation: rdModalIn 0.25s ease;
+}
+.rd-trends-modal-content p {
+  font-size: 18px; font-weight: 700; color: var(--text-color);
+  margin: 0 0 20px 0;
+}
+@keyframes rdModalIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ========== CREAR SUCURSAL VIEW ========== */
+.cs-form-container {
+  padding: 0 10px;
+  text-align: left;
+}
+.cs-label {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #a48168; /* café claro */
+  margin-bottom: 8px;
+}
+.cs-input {
+  width: 100%;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #fdfcf9; /* gris/crema muy claro */
+  font-size: 16px;
+  color: var(--text-color);
+  margin-bottom: 22px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+.cs-input:focus {
+  outline: 2px solid var(--primary-color);
+}
+
+/* ========== SUCURSALES VIEW ========== */
+.suc-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 20px; position: relative;
+}
+.suc-back-arrow {
+  font-size: 26px; font-weight: bold; cursor: pointer;
+  color: var(--text-color); line-height: 1;
+  transition: opacity 0.2s;
+}
+.suc-back-arrow:hover { opacity: 0.6; }
+.suc-title {
+  font-size: 28px; font-weight: 800; color: var(--secondary-color);
+  margin: 0; flex: 1; text-align: center;
+  padding-right: 30px; /* offset for back arrow centering */
+}
+
+.suc-search-wrapper {
+  position: relative; margin-bottom: 14px;
+}
+.suc-search-wrapper input {
+  width: 100%; padding: 13px 44px 13px 18px;
+  border: 1.5px solid #e0d6cc; border-radius: 14px;
+  font-size: 14px; color: var(--text-color);
+  background: var(--white); margin-bottom: 0;
+  transition: border-color 0.2s;
+}
+.suc-search-wrapper input:focus {
+  border-color: var(--primary-color); outline: none;
+}
+.suc-search-icon {
+  position: absolute; right: 16px; top: 50%;
+  transform: translateY(-50%); font-size: 16px;
+  color: #bbb; pointer-events: none;
+}
+
+.suc-divider {
+  border: none; border-top: 3px solid var(--secondary-color);
+  margin: 0 0 30px 0;
+}
+
+/* Branch cards grid */
+.suc-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 16px; margin-bottom: 40px; min-height: 120px;
+}
+.suc-card {
+  background: #f5f0ea; border-radius: 20px;
+  padding: 24px 16px; text-align: center;
+  cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+  border: 1.5px solid transparent;
+}
+.suc-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+  border-color: #d4c4b0;
+}
+.suc-card-name {
+  font-size: 16px; font-weight: 700; color: var(--text-color);
+  margin-bottom: 8px;
+}
+.suc-card-status {
+  font-size: 15px; font-weight: 700;
+}
+.suc-status-open { color: #7bc47f; }
+.suc-status-closed { color: #e07070; }
+
+/* Create button */
+.suc-action-wrapper { text-align: center; margin-bottom: 30px; }
+.suc-btn-create {
+  background: #e8bf7b; color: white;
+  border: none; border-radius: 30px;
+  padding: 16px 44px; font-size: 17px; font-weight: 700;
+  cursor: pointer; transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 4px 14px rgba(232,191,123,0.35);
+}
+.suc-btn-create:hover {
+  background: #d9a95f; transform: translateY(-2px);
+}

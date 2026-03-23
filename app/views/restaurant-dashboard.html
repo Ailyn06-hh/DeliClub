@@ -1,0 +1,68 @@
+<!-- Restaurant Dashboard View -->
+<div id="screen-restaurant-dashboard" class="screen">
+  <header>
+    <div class="header-logo">
+      <img src="views/img/logopng.png" alt="DeliClub" style="height:45px; vertical-align:middle;">
+    </div>
+    <div class="header-right">
+      <span class="user-label" id="rd-label-role"></span>
+      <div class="avatar" id="rd-header-avatar" onclick="openProfile()" title="Mi perfil"></div>
+    </div>
+  </header>
+
+  <h1 class="rd-welcome-title">Bienvenido <span id="rd-restaurant-name"></span></h1>
+
+  <!-- Wallet Card -->
+  <div class="rd-wallet-card" id="rd-wallet-card">
+    <div class="rd-wallet-top">
+      <div>
+        <div class="rd-wallet-phantom-label">Tu wallet Phantom</div>
+        <div class="rd-wallet-address" id="rd-wallet-address">---</div>
+      </div>
+      <div class="rd-wallet-balance-side">
+        <div class="rd-wallet-balance-label">Tu saldo</div>
+        <div class="rd-wallet-balance-mxn" id="rd-wallet-mxn">$ 0.00 MXN</div>
+        <div class="rd-wallet-balance-sol">
+          <span class="rd-sol-icon">☀️</span>
+          <span id="rd-wallet-sol">0.000 SOL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Two small cards side by side -->
+  <div class="rd-cards-row">
+    <div class="rd-card-small" onclick="openSucursales()" style="cursor:pointer;">
+      <div class="rd-card-small-title">Sucursales</div>
+      <div class="rd-card-small-icon">🏠</div>
+    </div>
+    <div class="rd-card-small">
+      <div class="rd-card-small-title">Articulo mas vendido</div>
+      <div class="rd-card-small-icon">📊</div>
+      <div class="rd-card-small-detail" id="rd-top-article">TOP: ---</div>
+    </div>
+  </div>
+
+  <!-- Alerts / Notifications -->
+  <h2 class="rd-section-title">Alertas</h2>
+  <div class="rd-alerts-container" id="rd-alerts-container">
+    <!-- Filled dynamically -->
+  </div>
+
+  <!-- Trends block -->
+  <div class="rd-trends-block" onclick="showTrendsModal()">
+    <div class="rd-trends-star">⭐</div>
+    <div class="rd-trends-text">
+      <div class="rd-trends-title">Tendencia en ventas</div>
+      <div class="rd-trends-sub">SUSCRIPCION 1<br>para ver este apartado</div>
+    </div>
+  </div>
+
+  <!-- Trends Modal -->
+  <div class="rd-trends-modal" id="rd-trends-modal" style="display:none;">
+    <div class="rd-trends-modal-content">
+      <p>Función próximamente agregada</p>
+      <button class="btn-primary" onclick="closeTrendsModal()">Cerrar</button>
+    </div>
+  </div>
+</div>

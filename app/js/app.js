@@ -28,7 +28,11 @@ async function loadViews() {
     'views/register-user.html',
     'views/register-restaurant.html',
     'views/dashboard.html',
-    'views/profile.html'
+    'views/profile.html',
+    'views/restaurant-dashboard.html',
+    'views/restaurant-dashboard.html',
+    'views/sucursales.html',
+    'views/crear-sucursal.html'
   ];
   
   for (const file of viewFiles) {
@@ -51,10 +55,24 @@ import { renderDiscovery, viewMenu, viewCategory, showAddedBadge, filterMenuItem
 import { renderSchedule, syncSchedule, addCategory, addItem, renderPartnerMenu, savePartnerInfo, setPartnerMenu, partnerMenu } from './partner.js';
 import { createCampaign, fetchCampaigns, donate } from './solana.js';
 import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCalNext, confirmLogout, openEditProfile, closeEditProfile, saveProfileChanges } from './profile.js';
+import { renderRestaurantDashboard, showTrendsModal, closeTrendsModal } from './restaurant-dashboard.js';
+import { openSucursales, backToRestaurantDashboard, searchSucursales, createNewSucursal } from './sucursales.js';
+import { openCrearSucursal, submitNuevaSucursal } from './crear-sucursal.js';
 
 export async function showMain() {
   const session = getSession();
   if(!session) { showScreen('screen-welcome'); return; }
+  
+  const isClient = session.type === 'Cliente';
+  
+  // Partner goes to restaurant dashboard
+  if (!isClient) {
+    showScreen('screen-restaurant-dashboard');
+    renderRestaurantDashboard();
+    return;
+  }
+  
+  // Client flow
   showScreen('screen-main');
   
   const headerAvatar = document.getElementById("header-avatar");
@@ -65,25 +83,10 @@ export async function showMain() {
   document.getElementById("user-name-display").innerText = session.name;
   const labelRoleEl = document.getElementById("label-role");
   if (labelRoleEl) labelRoleEl.innerText = session.name || '';
-  const isClient = session.type === 'Cliente';
-  document.getElementById('view-client').style.display = isClient ? 'block' : 'none';
-  document.getElementById('view-partner').style.display = isClient ? 'none' : 'block';
+  document.getElementById('view-client').style.display = 'block';
+  document.getElementById('view-partner').style.display = 'none';
   showWalletBalance();
-  if(isClient) { renderDiscovery(); fetchCampaigns(); }
-  else {
-    try { 
-      const res=await fetch(API+'/api/restaurants'); 
-      const all=await res.json(); 
-      const mine=all.find(r=>r.ownerId===session.id);
-      if(mine){
-        document.getElementById('biz-name').value=mine.name||'';
-        document.getElementById('biz-desc').value=mine.desc||'';
-        setPartnerMenu(mine.menu||[]);
-        renderPartnerMenu();
-      }
-    } catch(e){}
-    renderSchedule();
-  }
+  renderDiscovery(); fetchCampaigns();
 }
 
 // ========== EXPOSE FUNCTIONS TO GLOBAL SCOPE ==========
@@ -124,6 +127,15 @@ window.confirmLogout = confirmLogout;
 window.openEditProfile = openEditProfile;
 window.closeEditProfile = closeEditProfile;
 window.saveProfileChanges = saveProfileChanges;
+window.renderRestaurantDashboard = renderRestaurantDashboard;
+window.showTrendsModal = showTrendsModal;
+window.closeTrendsModal = closeTrendsModal;
+window.openSucursales = openSucursales;
+window.backToRestaurantDashboard = backToRestaurantDashboard;
+window.searchSucursales = searchSucursales;
+window.createNewSucursal = createNewSucursal;
+window.openCrearSucursal = openCrearSucursal;
+window.submitNuevaSucursal = submitNuevaSucursal;
 
 // ========== INITIALIZE ==========
 try { if(typeof buffer!=='undefined') window.Buffer=buffer.Buffer; } catch(e) {}

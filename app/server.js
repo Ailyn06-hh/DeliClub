@@ -199,6 +199,33 @@ app.post('/api/restaurants', async (req, res) => {
   res.json(resData);
 });
 
+app.post('/api/restaurants/new', async (req, res) => {
+  const { userId, name, rfc, address, address2, foodCategory } = req.body;
+  if (!userId) return res.status(400).json({ error: 'userId requerido' });
+  
+  await db.read();
+  const resData = {
+    id: Date.now().toString(),
+    ownerId: userId,
+    name: name || 'Nueva Sucursal',
+    desc: '',
+    tags: foodCategory || 'Restaurant',
+    rating: '5.0',
+    img: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80',
+    status: 'Abierto',
+    menu: [],
+    schedule: {},
+    wallet: '',
+    rfc: rfc || '',
+    address: address || '',
+    address2: address2 || ''
+  };
+  
+  db.data.restaurants.push(resData);
+  await db.write();
+  res.json(resData);
+});
+
 app.get('/api/restaurants/:id/menu', async (req, res) => {
   await db.read();
   const rest = db.data.restaurants.find(r => r.id === req.params.id);

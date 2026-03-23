@@ -1,0 +1,27 @@
+<!-- Sucursales View -->
+<div id="screen-sucursales" class="screen">
+  <!-- Header -->
+  <div class="suc-header">
+    <span class="suc-back-arrow" onclick="backToRestaurantDashboard()">←</span>
+    <h1 class="suc-title">Sucursales</h1>
+  </div>
+
+  <!-- Search bar -->
+  <div class="suc-search-wrapper">
+    <input type="text" id="suc-search-input" placeholder="Buscar pedidos y cupones..." oninput="searchSucursales(this.value)">
+    <span class="suc-search-icon">🔍</span>
+  </div>
+
+  <!-- Divider -->
+  <hr class="suc-divider">
+
+  <!-- Branch grid -->
+  <div class="suc-grid" id="suc-grid">
+    <!-- Filled dynamically -->
+  </div>
+
+  <!-- Create new branch button -->
+  <div class="suc-action-wrapper">
+    <button class="suc-btn-create" onclick="createNewSucursal()">Crear nueva sucursal</button>
+  </div>
+</div>

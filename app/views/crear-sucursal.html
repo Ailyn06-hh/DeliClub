@@ -1,0 +1,31 @@
+<!-- Crear Sucursal View -->
+<div id="screen-crear-sucursal" class="screen">
+  <!-- Header -->
+  <div class="suc-header">
+    <span class="suc-back-arrow" onclick="openSucursales()">←</span>
+    <h1 class="suc-title">Sucursales</h1>
+  </div>
+
+  <!-- Form -->
+  <div class="cs-form-container">
+    <label class="cs-label">Nombre del establecimiento:</label>
+    <input type="text" id="cs-nombre" class="cs-input">
+    
+    <label class="cs-label">RFC:</label>
+    <input type="text" id="cs-rfc" class="cs-input">
+    
+    <label class="cs-label">Dirección Física:</label>
+    <input type="text" id="cs-direccion1" class="cs-input">
+    
+    <label class="cs-label">Categoría de Comida:</label>
+    <input type="text" id="cs-categoria" class="cs-input">
+    
+    <label class="cs-label">Dirección:</label>
+    <input type="text" id="cs-direccion2" class="cs-input">
+  </div>
+  
+  <!-- Create Return Button -->
+  <div class="suc-action-wrapper" style="margin-top: 40px;">
+    <button class="suc-btn-create" onclick="submitNuevaSucursal()">Crear nueva sucursal</button>
+  </div>
+</div>

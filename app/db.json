@@ -10,7 +10,8 @@
       "id": "1774141747081",
       "name": "Comecome",
       "type": "Partner",
-      "password": "comecome"
+      "password": "comecome",
+      "delipoints": 0
     },
     {
       "id": "1774143774079",
@@ -126,7 +127,8 @@
       "wallet": "BKibDkcRq7DKHrsXMJ2KkF7WMmSPAxeyq9eci2q26hd6",
       "rfc": "sdfasdf",
       "address": "asdsad",
-      "foodCategory": "asdfad"
+      "foodCategory": "asdfad",
+      "delipoints": 0
     }
   ],
   "restaurants": [
@@ -279,6 +281,38 @@
       "rfc": "sdfasdf",
       "address": "asdsad",
       "wallet": "BKibDkcRq7DKHrsXMJ2KkF7WMmSPAxeyq9eci2q26hd6"
+    },
+    {
+      "id": "1774284419013",
+      "ownerId": "1774245349518",
+      "name": "Nueva Sucursal Centro",
+      "desc": "",
+      "tags": "Italiana",
+      "rating": "5.0",
+      "img": "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80",
+      "status": "Abierto",
+      "menu": [],
+      "schedule": {},
+      "wallet": "",
+      "rfc": "CENTRO123",
+      "address": "Calle Principal 123",
+      "address2": "Calle Central 123"
+    },
+    {
+      "id": "1774284678661",
+      "ownerId": "1774141747081",
+      "name": "Lasañas el manipulador",
+      "desc": "",
+      "tags": "KSJDSKJD",
+      "rating": "5.0",
+      "img": "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80",
+      "status": "Abierto",
+      "menu": [],
+      "schedule": {},
+      "wallet": "",
+      "rfc": "AUJQTW",
+      "address": "JDJFSJS",
+      "address2": "KAJDJA"
     }
   ],
   "orders": [
