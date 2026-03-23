@@ -9,6 +9,33 @@ export function confirmLogout() {
   }
 }
 
+export function openEditProfile() {
+  const session = getSession();
+  if (!session) return;
+  document.getElementById('edit-profile-name').value = session.name || '';
+  document.getElementById('edit-profile-bio').value = session.bio || '';
+  document.getElementById('edit-profile-avatar').value = session.avatar || '';
+  document.getElementById('edit-profile-wallet').value = session.wallet || '';
+  document.getElementById('profile-edit-modal').style.display = 'flex';
+}
+
+export function closeEditProfile() {
+  document.getElementById('profile-edit-modal').style.display = 'none';
+}
+
+export function saveProfileChanges() {
+  const session = getSession();
+  if (!session) return;
+  session.name = document.getElementById('edit-profile-name').value.trim();
+  session.bio = document.getElementById('edit-profile-bio').value.trim();
+  session.avatar = document.getElementById('edit-profile-avatar').value.trim();
+  session.wallet = document.getElementById('edit-profile-wallet').value.trim();
+  localStorage.setItem('solana_session', JSON.stringify(session));
+  closeEditProfile();
+  renderProfileInfo(session);
+  renderWalletCard(session);
+}
+
 // ── Calendar state ──────────────────────────────────────────────
 let calDate = new Date();
 let reservationDates = []; // array of 'YYYY-MM-DD' strings
@@ -34,7 +61,7 @@ function renderProfileInfo(session) {
   const avatarEl = document.getElementById('profile-avatar-img');
   if (avatarEl) {
     avatarEl.style.backgroundImage =
-      "url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=200&q=80')";
+      `url('${session.avatar || 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=200&q=80'}')`;
   }
 
   // Name
@@ -152,11 +179,11 @@ function renderCalGrid(year, month) {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
   const dayHeaders = ['Su','Mo','Tu','We','Th','Fr','Sa'];
-  let html = dayHeaders.map(d => `<div class="cal-day-header">${d}</div>`).join('');
+  let html = dayHeaders.map(d => `<div class="cal-day-header-new">${d}</div>`).join('');
 
   // Empty cells before first day
   for (let i = 0; i < firstDay; i++) {
-    html += `<div class="cal-day empty"></div>`;
+    html += `<div class="cal-day-new empty"></div>`;
   }
 
   for (let d = 1; d <= daysInMonth; d++) {
@@ -166,7 +193,7 @@ function renderCalGrid(year, month) {
       d === today.getDate() && month === today.getMonth() && year === today.getFullYear();
     const hasReservation = reservationDates.includes(dateStr);
     const classes = [
-      'cal-day',
+      'cal-day-new',
       isToday ? 'today' : '',
       hasReservation ? 'has-reservation' : ''
     ].filter(Boolean).join(' ');
@@ -202,19 +229,24 @@ async function loadPurchaseHistory(session) {
   purchases.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   container.innerHTML = purchases.map(p => {
-    const date = p.date ? formatDate(p.date) : '—';
+    let dateStr = p.date ? formatDate(p.date) : '—';
+    // Format "21 - Marzo - 2026"
+    try {
+      if(p.date) {
+        let d = new Date(p.date + 'T12:00:00');
+        let m = d.toLocaleDateString('es-MX', { month: 'long' });
+        m = m.charAt(0).toUpperCase() + m.slice(1);
+        dateStr = `${d.getDate()} - ${m} - ${d.getFullYear()}`;
+      }
+    } catch(e) {}
+    
     const points = p.delipoints != null ? p.delipoints : Math.round((p.total || 0) * 0.05);
     return `
-      <div class="purchase-card">
-        <div class="purchase-row">
-          <span class="purchase-biz">${p.businessName || p.restaurant || 'Negocio'}</span>
-          <span class="purchase-total">$${(p.total || 0).toFixed(2)}</span>
-        </div>
-        <div class="purchase-meta">
-          <span>📅 ${date}</span>
-          <span class="purchase-points">+${points} Delipoints 🎁</span>
-        </div>
-        ${p.description ? `<div class="purchase-desc">${p.description}</div>` : ''}
+      <div class="purchase-card-new">
+        <div class="purchase-title-new">${p.businessName || p.restaurant || 'Negocio'}</div>
+        <div class="purchase-row-new">Total: $${(p.total || 0).toFixed(2)}</div>
+        <div class="purchase-row-new">Fecha: ${dateStr}</div>
+        <div class="purchase-row-new">Recompensa obtenida: $${points.toFixed(2)}</div>
       </div>`;
   }).join('');
 }

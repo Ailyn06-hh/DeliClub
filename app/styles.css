@@ -342,3 +342,62 @@ a { color: var(--secondary-color); font-weight: bold; text-decoration: none; bor
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 .my-account-icon { position: absolute; right: 20px; font-size: 22px; }
+
+/* --- NEW PROFILE STYLES --- */
+.container-profile { background-color: var(--white); min-height: 100vh; padding: 20px 25px; }
+.profile-header-bar { display: flex; align-items: center; margin-bottom: 25px; gap: 15px; }
+.profile-header-bar .back-arrow { font-size: 24px; cursor: pointer; color: var(--text-color); font-weight: bold; }
+.profile-title { font-size: 22px; font-weight: 800; color: var(--text-color); margin: 0; }
+.profile-hero { text-align: center; margin-bottom: 25px; }
+.profile-avatar-wrap { display: inline-block; margin-bottom: 15px; }
+.profile-avatar { width: 140px; height: 140px; border-radius: 50%; background-size: cover; background-position: center; border: 4px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.profile-username { font-size: 28px; font-weight: 800; color: #8b5b3f; margin: 0 0 5px 0; }
+.profile-bio { font-size: 15px; font-weight: 600; color: #a48168; margin: 0; }
+.btn-edit-profile { background: transparent; border: 2px solid #8b5b3f; color: #8b5b3f; border-radius: 12px; padding: 6px 16px; font-size: 13px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: all 0.2s; }
+.btn-edit-profile:hover { background: #8b5b3f; color: white; }
+
+.profile-card-new { background: #fdfaf6; border-radius: 20px; padding: 20px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+.delipoints-card-new { background: #f8f1e9; }
+.delipoints-label-new { font-size: 14px; font-weight: 800; color: #8b5b3f; display: block; margin-bottom: 5px; }
+.delipoints-mxn-new { font-size: 24px; font-weight: 800; color: #5d4037; margin-bottom: 2px; }
+.delipoints-sol-new { font-size: 13px; font-weight: 600; color: #9c8474; }
+.delipoints-icon-new { font-size: 45px; opacity: 0.8; }
+
+.profile-section-title-new { font-size: 18px; font-weight: 800; color: #8b5b3f; margin-bottom: 12px; text-align: left; }
+.profile-section-sub-new { font-weight: 600; color: #b69882; font-size: 15px; margin-left: 5px; }
+.wallet-card-new { background: #f8f1e9; margin-bottom: 25px; }
+.wallet-card-status-new { font-size: 13px; font-weight: 700; color: #999; margin-bottom: 8px; }
+.wallet-card-status-new.connected { color: #38b000; }
+.wallet-card-address-new { font-size: 20px; font-weight: 700; color: #5d4037; }
+.wallet-card-link-new { display: flex; flex-direction: column; align-items: center; color: #5d4037; text-decoration: none; border-bottom: none; }
+.wallet-share-icon { font-size: 24px; font-weight: bold; margin-bottom: 4px; }
+.wallet-card-link-new small { font-size: 13px; font-weight: 700; }
+
+.calendar-card-new { background: #fff; border: 1px solid #eee; border-radius: 20px; padding: 20px; margin-bottom: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.cal-nav-new { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.cal-btn-new { background: none; border: none; font-size: 20px; font-weight: bold; cursor: pointer; color: var(--text-color); }
+.cal-selectors-new select { padding: 6px 12px; border-radius: 10px; border: 1px solid #ddd; background: #fff; font-size: 14px; color: var(--text-color); font-weight: 600; outline: none; margin: 0 5px; cursor: pointer; }
+.cal-grid-new { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; text-align: center; }
+.cal-day-header-new { font-size: 11px; font-weight: 600; color: #a48168; margin-bottom: 5px; }
+.cal-day-new { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin: 0 auto; border-radius: 50%; font-size: 14px; font-weight: 600; color: var(--text-color); }
+.cal-day-new.empty { background: transparent; }
+.cal-day-new.today { background: #fdfaf6; border: 1px solid #e0d6cc; color: var(--primary-color); }
+.cal-day-new.has-reservation { background: #bf9577; color: white; }
+
+.purchase-card-new { background: #f5f0eb; border-radius: 12px; padding: 15px; margin-bottom: 12px; text-align: left; }
+.purchase-title-new { font-size: 18px; font-weight: 800; color: #000; margin-bottom: 6px; }
+.purchase-row-new { font-size: 14px; font-weight: 600; color: #8b5b3f; margin-bottom: 2px; }
+
+.btn-logout-new { display: block; width: 100%; padding: 16px; background: transparent; color: var(--text-color); border: none; font-size: 16px; font-weight: 700; cursor: pointer; text-align: left; margin-bottom: 20px; }
+
+/* Modal Edit Profile */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; display: flex; justify-content: center; align-items: center; }
+.profile-modal-content { background: white; border-radius: 20px; padding: 25px; width: 90%; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+.modal-title { font-size: 20px; font-weight: 800; color: var(--text-color); margin-top: 0; margin-bottom: 20px; text-align: center; }
+.modal-label { display: block; font-size: 13px; font-weight: 700; color: #8b5b3f; margin-bottom: 8px; text-align: left; }
+.modal-input { width: 100%; background: #f9f9f9; border: 1px solid #ddd; padding: 12px 15px; border-radius: 12px; font-size: 14px; margin-bottom: 15px; color: var(--text-color); box-sizing: border-box; }
+.modal-input:focus { border-color: #8b5b3f; outline: none; }
+.modal-actions { display: flex; gap: 10px; margin-top: 10px; }
+.modal-actions button { flex: 1; padding: 12px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; border: none; }
+.btn-cancel { background: #eee; color: #555; }
+.btn-save { background: #8b5b3f; color: white; }

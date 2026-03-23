@@ -1,11 +1,11 @@
 <!-- ===== SCREEN: USER PROFILE ===== -->
 <div id="screen-profile" class="screen">
-  <div class="container">
+  <div class="container container-profile">
 
     <!-- Header -->
     <div class="profile-header-bar">
       <span class="back-arrow" onclick="closeProfile()" title="Regresar">&#8592;</span>
-      <div class="header-logo">DeliClub</div>
+      <h1 class="profile-title">Mi perfil</h1>
     </div>
 
     <!-- Avatar & basic info -->
@@ -14,59 +14,86 @@
         <div class="profile-avatar" id="profile-avatar-img"></div>
       </div>
       <h2 class="profile-username" id="profile-username">Usuario</h2>
-      <p class="profile-bio" id="profile-bio">Amante de la gastronomía</p>
+      <p class="profile-bio" id="profile-bio">Usuario experto en gastronomía</p>
+      
+      <!-- Edit Profile Button Trigger -->
+      <button class="btn-edit-profile" onclick="openEditProfile()">Editar Perfil</button>
     </div>
 
     <!-- Delipoints card -->
-    <div class="profile-card delipoints-card">
-      <div class="delipoints-info">
-        <span class="delipoints-label">Delipoints</span>
-        <div class="delipoints-mxn" id="profile-delipoints-mxn">$ 0.00 MXN</div>
-        <div class="delipoints-sol" id="profile-delipoints-sol">0.000 SOL</div>
+    <div class="profile-card-new delipoints-card-new">
+      <div class="delipoints-info-new">
+        <span class="delipoints-label-new">Delipoints</span>
+        <div class="delipoints-mxn-new" id="profile-delipoints-mxn">$ 0.00 MXN</div>
+        <div class="delipoints-sol-new" id="profile-delipoints-sol">0.0000 SOL</div>
       </div>
-      <div class="delipoints-icon">🎁</div>
+      <div class="delipoints-icon-new">🎁</div>
     </div>
 
     <!-- Mi Wallet -->
-    <div class="profile-section-title">Mi Wallet</div>
-    <div class="profile-card wallet-card" id="profile-wallet-card">
-      <div>
-        <div class="wallet-card-status" id="profile-wallet-status-label">Sin wallet conectada</div>
-        <div class="wallet-card-address" id="profile-wallet-address">—</div>
+    <div class="profile-section-title-new">Mi Wallet</div>
+    <div class="profile-card-new wallet-card-new" id="profile-wallet-card">
+      <div class="wallet-left">
+        <div class="wallet-card-status-new connected" id="profile-wallet-status-label">Wallet conectada</div>
+        <div class="wallet-card-address-new" id="profile-wallet-address">—</div>
       </div>
-      <a class="wallet-card-link" id="profile-wallet-link" href="#" target="_blank" style="display:none;">
-        <span>&#x1F5D7;</span><br><small>Ver</small>
+      <a class="wallet-card-link-new" id="profile-wallet-link" href="#" target="_blank" style="display:none;">
+        <span class="wallet-share-icon">&#x2197;</span>
+        <small>Ver</small>
       </a>
     </div>
 
     <!-- Reservas -->
-    <div class="profile-section-title">Reservas</div>
-    <div class="profile-card calendar-card">
-      <div class="cal-nav">
-        <button class="cal-btn" onclick="profileCalPrev()">&#8249;</button>
-        <div class="cal-selectors">
+    <div class="profile-section-title-new">Reservas</div>
+    <div class="calendar-card-new">
+      <div class="cal-nav-new">
+        <button class="cal-btn-new" onclick="profileCalPrev()">&#8249;</button>
+        <div class="cal-selectors-new">
           <select id="cal-month" onchange="profileCalRender()"></select>
           <select id="cal-year" onchange="profileCalRender()"></select>
         </div>
-        <button class="cal-btn" onclick="profileCalNext()">&#8250;</button>
+        <button class="cal-btn-new" onclick="profileCalNext()">&#8250;</button>
       </div>
-      <div class="cal-grid" id="profile-cal-grid"></div>
+      <div class="cal-grid-new" id="profile-cal-grid"></div>
     </div>
 
     <!-- Historial de compras -->
-    <div class="profile-section-title">
+    <div class="profile-section-title-new">
       Mis compras
-      <span class="profile-section-sub">Recientes</span>
+      <span class="profile-section-sub-new">Recientes</span>
     </div>
     <div id="profile-purchases-list">
       <div class="loading">Cargando compras...</div>
     </div>
 
     <!-- Logout -->
-    <button class="btn-logout" onclick="confirmLogout()">
+    <button class="btn-logout-new" onclick="confirmLogout()">
       🚪 Cerrar Sesión
     </button>
 
     <div style="height: 30px;"></div>
+  </div>
+
+  <!-- Edit Profile Modal -->
+  <div id="profile-edit-modal" class="modal-overlay" style="display:none;">
+    <div class="modal-content profile-modal-content">
+      <h3 class="modal-title">Editar Perfil</h3>
+      <label class="modal-label">Nombre</label>
+      <input type="text" id="edit-profile-name" class="modal-input" placeholder="Tu nombre">
+      
+      <label class="modal-label">Descripción</label>
+      <input type="text" id="edit-profile-bio" class="modal-input" placeholder="Breve biografía">
+      
+      <label class="modal-label">URL Foto de Perfil</label>
+      <input type="text" id="edit-profile-avatar" class="modal-input" placeholder="https://...">
+      
+      <label class="modal-label">Wallet Address</label>
+      <input type="text" id="edit-profile-wallet" class="modal-input" placeholder="Ej. FEF...Wb">
+      
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeEditProfile()">Cancelar</button>
+        <button class="btn-save" onclick="saveProfileChanges()">Guardar</button>
+      </div>
+    </div>
   </div>
 </div>

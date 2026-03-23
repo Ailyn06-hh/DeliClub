@@ -50,7 +50,7 @@ import { addToCart, removeFromCart, updateCartUI, showCart, payWithSOL, clearCar
 import { renderDiscovery, viewMenu, viewCategory, showAddedBadge, filterMenuItems, filterByCategory, searchRestaurants, backToDiscovery } from './discovery.js';
 import { renderSchedule, syncSchedule, addCategory, addItem, renderPartnerMenu, savePartnerInfo, setPartnerMenu, partnerMenu } from './partner.js';
 import { createCampaign, fetchCampaigns, donate } from './solana.js';
-import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCalNext, confirmLogout } from './profile.js';
+import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCalNext, confirmLogout, openEditProfile, closeEditProfile, saveProfileChanges } from './profile.js';
 
 export async function showMain() {
   const session = getSession();
@@ -114,6 +114,9 @@ window.profileCalRender = profileCalRender;
 window.profileCalPrev = profileCalPrev;
 window.profileCalNext = profileCalNext;
 window.confirmLogout = confirmLogout;
+window.openEditProfile = openEditProfile;
+window.closeEditProfile = closeEditProfile;
+window.saveProfileChanges = saveProfileChanges;
 
 // ========== INITIALIZE ==========
 try { if(typeof buffer!=='undefined') window.Buffer=buffer.Buffer; } catch(e) {}
