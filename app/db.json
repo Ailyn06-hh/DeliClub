@@ -107,12 +107,14 @@
     },
     {
       "id": "1774242403733",
-      "name": "Leon",
+      "name": "Leon Sabroso K",
       "type": "Cliente",
       "password": "leon",
       "wallet": "9nEXZ7wYQN6BSxjPFUk74j6TYfp1LLFmM2j3aK5BZ9yA",
       "phone": "123455",
-      "email": "leon@gmail.com"
+      "email": "leon@gmail.com",
+      "bio": "El mejor prota",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlIl4DLipzQfzc3kV1FsVc2TMUL-7h2pNJAA&s"
     },
     {
       "id": "1774245349518",
