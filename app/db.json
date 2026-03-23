@@ -453,7 +453,7 @@
       "txSignature": "4KxaGknzW31LXhgdaFdb7RctxXRipUt6kvBiqnHjzyLXpQwLg5NRxyViFkP9bvvULBtddUo5myJ2CAyA8cd17RcJ",
       "timestamp": "2026-03-23T08:52:57.918Z",
       "status": "confirmed"
-          },
+    },
     {
       "id": "1774278229620",
       "clientId": "1774242403733",
@@ -473,5 +473,6 @@
       "timestamp": "2026-03-23T15:03:49.621Z",
       "status": "confirmed"
     }
-  ]
+  ],
+  "reservations": []
 }
