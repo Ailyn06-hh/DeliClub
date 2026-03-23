@@ -206,9 +206,22 @@
               "price": "150"
             }
           ]
+        },
+        {
+          "name": "Bebidas",
+          "items": [
+            {
+              "name": "Café Americano",
+              "desc": "Se prepara extrayendo uno o dos shots de café espresso y luego se le añade agua caliente.",
+              "price": "35"
+            }
+          ]
         }
       ],
-      "schedule": {}
+      "schedule": {},
+      "wallet": "",
+      "rfc": "",
+      "address": ""
     },
     {
       "id": "1774146889982",
