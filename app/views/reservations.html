@@ -1,0 +1,75 @@
+<div id="screen-reservations" class="screen" style="padding:15px; position:relative; max-width:600px; margin:0 auto;">
+  
+  <!-- Header -->
+  <div class="main-top" style="display:flex; justify-content:space-between; align-items:center;">
+    <img src="logo.png" alt="DeliClub" class="logo-text" style="height:35px; width:auto; cursor:pointer;" onclick="showScreen('screen-main')">
+    <div style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="openProfile()">
+      <span id="res-user-name" style="font-weight:700; font-size:14px; color:var(--text-color);">Usuario</span>
+      <div id="res-header-avatar" class="avatar-small" style="width:35px; height:35px; background-size:cover; border-radius:50%;"></div>
+    </div>
+  </div>
+
+  <!-- Subheader -->
+  <div class="detail-header" style="margin-top:15px; margin-bottom:5px; display:flex; justify-content:space-between; align-items:center;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <button class="back-arrow" onclick="backToDiscovery()" style="background:none; border:none; font-size:22px; cursor:pointer;">←</button>
+      <h2 id="res-restaurant-name" style="margin:0; font-size:22px; font-weight:800; color:#5d4037;">Restaurante</h2>
+    </div>
+    <div class="detail-rating" id="res-restaurant-rating" style="display:flex; align-items:center; gap:4px; color:#f39c12; font-weight:bold; font-size:12px;">
+      4.8 ⭐️⭐️⭐️⭐️⭐️
+    </div>
+  </div>
+
+  <h1 style="color:#a87452; font-size:24px; font-weight:800; margin:5px 0 10px 0;">Reservaciones</h1>
+  
+  <p id="res-restaurant-schedule" style="color:#5d4037; font-size:14px; font-weight:600; margin:0 0 10px 0;">Horarios: Lun - Dom de 8:00 a.m. a 10 p.m.</p>
+
+  <div id="res-restaurant-img" style="width:100%; height:180px; background-size:cover; background-position:center; border-radius:20px; margin-bottom:20px;"></div>
+
+  <h3 class="res-label">Cantidad de personas</h3>
+  <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px;">
+    <button class="res-qty-btn" onclick="window.resChangeQty(-1)">-</button>
+    <span id="res-qty" style="font-size:18px; font-weight:700;">2</span>
+    <button class="res-qty-btn" onclick="window.resChangeQty(1)">+</button>
+  </div>
+
+  <h3 class="res-label">Hora de reserva:</h3>
+  <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+    <select id="res-hour" class="res-time-select"></select>
+    <span style="font-size:22px; font-weight:bold; color:#777;">:</span>
+    <select id="res-minute" class="res-time-select">
+      <option value="00">00</option>
+      <option value="15">15</option>
+      <option value="30">30</option>
+      <option value="45">45</option>
+    </select>
+  </div>
+
+  <h3 class="res-label">Fecha de reserva</h3>
+  <div class="res-calendar-new" style="margin-bottom:25px; border: 1px solid #ddd; border-radius: 12px; padding: 15px; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+    <div class="cal-header-new" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+      <button class="cal-btn-new" onclick="window.resCalPrev()">‹</button>
+      <div class="cal-selectors-new">
+        <select id="res-cal-month" onchange="window.resCalRender()"></select>
+        <select id="res-cal-year" onchange="window.resCalRender()"></select>
+      </div>
+      <button class="cal-btn-new" onclick="window.resCalNext()">›</button>
+    </div>
+    <div id="res-cal-grid" class="cal-grid-new"></div>
+  </div>
+
+  <h3 class="res-label">A que Nombre estará la reservación:</h3>
+  <input type="text" id="res-input-name" class="res-input" value="Usuario" style="margin-bottom:20px;">
+
+  <h3 class="res-label">Zona del restaurante:</h3>
+  <select id="res-input-zone" class="res-input" style="margin-bottom:30px;">
+    <option value="Terraza">Terraza</option>
+    <option value="Interior">Interior</option>
+    <option value="Jardín">Jardín</option>
+    <option value="Barra">Barra</option>
+  </select>
+
+  <button class="res-policy-btn" onclick="alert('Políticas: Sujeto a disponibilidad. \nCancelaciones con al menos 2 hr de anticipación.')">Ver políticas y transparencia ➔</button>
+
+  <button class="res-submit-btn" onclick="window.confirmReservation()">Confirmar Reservación</button>
+</div>

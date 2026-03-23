@@ -18,6 +18,7 @@ const db = new Low(adapter, defaultData);
 await db.read();
 if (!db.data) { db.data = defaultData; await db.write(); }
 if (!db.data.orders) { db.data.orders = []; await db.write(); }
+if (!db.data.reservations) { db.data.reservations = []; await db.write(); }
 
 // Serve logo from artifacts
 app.get('/logo.png', (req, res) => {
@@ -243,6 +244,44 @@ app.get('/api/restaurants/:id/menu', async (req, res) => {
     address: rest.address || '',
     wallet: rest.wallet || ''
   });
+});
+
+// --- RESERVATIONS ---
+app.post('/api/reservations', async (req, res) => {
+  const { userId, restaurantId, restaurantName, date, time, guests, reservationName, zone, timestamp } = req.body;
+  if (!userId || !restaurantId || !date || !time) {
+    return res.status(400).json({ error: 'Datos incompletos para reservación' });
+  }
+  
+  await db.read();
+  const reservation = {
+    id: Date.now().toString(),
+    userId,
+    restaurantId,
+    restaurantName: restaurantName || '',
+    date,
+    time,
+    guests: guests || 2,
+    reservationName: reservationName || '',
+    zone: zone || 'Terraza',
+    timestamp: timestamp || new Date().toISOString(),
+    status: 'confirmed'
+  };
+  
+  if (!db.data.reservations) db.data.reservations = [];
+  db.data.reservations.push(reservation);
+  await db.write();
+  res.json(reservation);
+});
+
+app.get('/api/reservations', async (req, res) => {
+  await db.read();
+  const { userId, role } = req.query;
+  let reservations = db.data.reservations || [];
+  if (userId) {
+    reservations = reservations.filter(r => r.userId === userId || r.restaurantId === userId);
+  }
+  res.json(reservations);
 });
 
 // --- ORDERS ---

@@ -169,7 +169,7 @@ export async function viewMenu(restaurantId) {
     if (data.wallet) {
       html += `<div style="text-align:center;margin-bottom:15px;"><span style="background:#1a1a2e;color:#14F195;padding:6px 12px;border-radius:10px;font-size:11px;">🟣 Acepta pagos en SOL · ${shortAddr(data.wallet)}</span></div>`;
     }
-    html += `<button class="btn-reserve-new" onclick="alert('Función de reservación próximamente.')">¿Buscas Reservar?</button>`;
+    html += `<button class="btn-reserve-new" onclick="window.openReservations('${restaurantId}')">¿Buscas Reservar?</button>`;
     html += `<hr class="menu-divider" />`;
 
     html += `
@@ -198,7 +198,7 @@ export async function viewMenu(restaurantId) {
                   <li data-item-name="${it.name.toLowerCase()}">${it.name}</li>
                 `).join('')}
               </ul>
-              <button class="btn-ver" onclick="viewCategory('${restaurantId}', '${cat.name.replace(/'/g, "\\'")}')">Ver</button>>
+              <button class="btn-ver" onclick="viewCategory('${restaurantId}', '${cat.name.replace(/'/g, "\\'")}')">Ver</button>
             </div>
           </div>
         `;

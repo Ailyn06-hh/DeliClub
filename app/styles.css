@@ -171,7 +171,7 @@ a { color: var(--secondary-color); font-weight: bold; text-decoration: none; bor
 .menu-cat-card-body { padding: 15px 18px; }
 .menu-cat-card-body h4 { font-size: 18px; font-weight: 700; color: var(--text-color); margin: 0 0 10px 0; }
 .menu-cat-card-body ul { list-style: disc; padding-left: 20px; margin: 0 0 12px 0; color: #555; font-size: 13px; line-height: 1.7; }
-.btn-ver { display: inline-block; padding: 8px 30px; background: var(--primary-color); color: white; border: none; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; float: right; transition: background 0.2s; }
+.btn-ver { padding: 8px 30px; background: var(--primary-color); color: white; border: none; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; float: right; transition: background 0.2s; }
 .btn-ver:hover { background: var(--secondary-color); }
 
 /* New La Piazza Styles */
@@ -402,6 +402,7 @@ a { color: var(--secondary-color); font-weight: bold; text-decoration: none; bor
 .btn-cancel { background: #eee; color: #555; }
 .btn-save { background: #8b5b3f; color: white; }
 
+
 /* ========== RESTAURANT DASHBOARD ========== */
 .rd-welcome-title {
   font-size: 28px; font-weight: 800; text-align: left;
@@ -627,4 +628,79 @@ a { color: var(--secondary-color); font-weight: bold; text-decoration: none; bor
 }
 .suc-btn-create:hover {
   background: #d9a95f; transform: translateY(-2px);
+}
+/* Reservations View */
+.res-label {
+  font-size: 15px;
+  font-weight: 800;
+  color: #a87452;
+  margin: 0 0 10px 0;
+  text-align: left;
+}
+.res-qty-btn {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #5d4037;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.res-time-select {
+  padding: 8px 12px;
+  border: 1px solid #e0d6cc;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  background: white;
+  color: #5d4037;
+  outline: none;
+  cursor: pointer;
+}
+.res-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #fcfaf8;
+  font-size: 15px;
+  font-weight: 600;
+  color: #5d4037;
+  outline: none;
+  box-sizing: border-box;
+}
+.res-policy-btn {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  color: #a87452;
+  border: 1px solid #a87452;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+.res-submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: #a87452;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.cal-day-new.selectable {
+  cursor: pointer;
+}
+.cal-day-new.selected {
+  background: #a87452;
+  color: white;
 }

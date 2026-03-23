@@ -32,7 +32,9 @@ async function loadViews() {
     'views/restaurant-dashboard.html',
     'views/restaurant-dashboard.html',
     'views/sucursales.html',
-    'views/crear-sucursal.html'
+    'views/crear-sucursal.html',
+    'views/reservations.html'
+
   ];
   
   for (const file of viewFiles) {
@@ -58,6 +60,8 @@ import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCal
 import { renderRestaurantDashboard, showTrendsModal, closeTrendsModal } from './restaurant-dashboard.js';
 import { openSucursales, backToRestaurantDashboard, searchSucursales, createNewSucursal } from './sucursales.js';
 import { openCrearSucursal, submitNuevaSucursal } from './crear-sucursal.js';
+import { openReservations, resChangeQty, resCalRender, resCalPrev, resCalNext, resSelectDate, confirmReservation } from './reservations.js';
+
 
 export async function showMain() {
   const session = getSession();
@@ -136,6 +140,14 @@ window.searchSucursales = searchSucursales;
 window.createNewSucursal = createNewSucursal;
 window.openCrearSucursal = openCrearSucursal;
 window.submitNuevaSucursal = submitNuevaSucursal;
+
+window.openReservations = openReservations;
+window.resChangeQty = resChangeQty;
+window.resCalRender = resCalRender;
+window.resCalPrev = resCalPrev;
+window.resCalNext = resCalNext;
+window.resSelectDate = resSelectDate;
+window.confirmReservation = confirmReservation;
 
 // ========== INITIALIZE ==========
 try { if(typeof buffer!=='undefined') window.Buffer=buffer.Buffer; } catch(e) {}
