@@ -339,7 +339,7 @@ a { color: var(--secondary-color); font-weight: bold; text-decoration: none; bor
 
 /* ========== RESTAURANT DASHBOARD ========== */
 .rd-welcome-title {
-  font-size: 28px; font-weight: 800; text-align: left;
+  font-size: 28px; font-weight: 800; text-align: center;
   margin: 0 0 18px 0; color: var(--secondary-color);
 }
 

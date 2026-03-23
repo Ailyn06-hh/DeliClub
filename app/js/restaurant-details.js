@@ -82,7 +82,7 @@ export async function renderRestaurantDetails(id) {
     if(dpMxn) dpMxn.innerText = `$${delipoints.toFixed(2)} MXN`;
     if(dpSol) {
       const solValue = delipoints / SOL_RATE;
-      dpSol.innerText = `${solValue.toFixed(4)} SOL`;
+      dpSol.innerHTML = `☀️ ${solValue.toFixed(4)} SOL`;
     }
 
     // Schedule

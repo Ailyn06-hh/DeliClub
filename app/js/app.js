@@ -70,9 +70,7 @@ import { openReservacionesClicli } from './reservaciones-clicli.js';
 export function openRestaurantDetails(id) {
   showScreen('screen-restaurant-details');
   if(id) {
-    if(typeof window.renderRestaurantDetails === 'function') {
-        window.renderRestaurantDetails(id);
-    }
+    renderRestaurantDetails(id);
   }
 }
 export function backToSucursales() {
