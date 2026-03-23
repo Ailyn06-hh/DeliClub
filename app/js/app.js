@@ -56,8 +56,15 @@ export async function showMain() {
   const session = getSession();
   if(!session) { showScreen('screen-welcome'); return; }
   showScreen('screen-main');
+  
+  const headerAvatar = document.getElementById("header-avatar");
+  if(headerAvatar) {
+    headerAvatar.style.backgroundImage = `url('${session.avatar || 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=200&q=80'}')`;
+  }
+  
   document.getElementById("user-name-display").innerText = session.name;
-  document.getElementById("label-role").innerText = (session.type||'').toUpperCase();
+  const labelRoleEl = document.getElementById("label-role");
+  if (labelRoleEl) labelRoleEl.innerText = session.name || '';
   const isClient = session.type === 'Cliente';
   document.getElementById('view-client').style.display = isClient ? 'block' : 'none';
   document.getElementById('view-partner').style.display = isClient ? 'none' : 'block';

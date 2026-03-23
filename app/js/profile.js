@@ -59,9 +59,14 @@ export function closeProfile() {
 function renderProfileInfo(session) {
   // Avatar (use the same dog avatar or session photo)
   const avatarEl = document.getElementById('profile-avatar-img');
+  const headerAvatarEl = document.getElementById('header-avatar');
+  const avatarUrl = session.avatar || 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=200&q=80';
+  
   if (avatarEl) {
-    avatarEl.style.backgroundImage =
-      `url('${session.avatar || 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=200&q=80'}')`;
+    avatarEl.style.backgroundImage = `url('${avatarUrl}')`;
+  }
+  if (headerAvatarEl) {
+    headerAvatarEl.style.backgroundImage = `url('${avatarUrl}')`;
   }
 
   // Name
