@@ -50,7 +50,8 @@
       "phone": "449 32423423423423",
       "email": "hanny@gmail.com",
       "bio": "",
-      "avatar": "https://i.pinimg.com/originals/73/70/aa/7370aaba6a2f2b75429ab621c818843c.jpg"
+      "avatar": "https://i.pinimg.com/originals/73/70/aa/7370aaba6a2f2b75429ab621c818843c.jpg",
+      "delipoints": 0
     },
     {
       "id": "1774237330579",
@@ -61,7 +62,8 @@
       "phone": "4492326892",
       "email": "ailynhernandezhermosillo@gmail.com",
       "bio": "",
-      "avatar": "https://media-qro1-2.cdn.whatsapp.net/v/t61.24694-24/652822680_2731862597198770_7918223705238049246_n.jpg?ccb=11-4&oh=01_Q5Aa4AGO-Lrkfe8SwXMS4fE3bg7pfmAkh3fxMXR2wJR_JJs6PQ&oe=69CDAC41&_nc_sid=5e03e0&_nc_cat=100"
+      "avatar": "https://media-qro1-2.cdn.whatsapp.net/v/t61.24694-24/652822680_2731862597198770_7918223705238049246_n.jpg?ccb=11-4&oh=01_Q5Aa4AGO-Lrkfe8SwXMS4fE3bg7pfmAkh3fxMXR2wJR_JJs6PQ&oe=69CDAC41&_nc_sid=5e03e0&_nc_cat=100",
+      "delipoints": 0
     },
     {
       "id": "1774241554512",
@@ -117,7 +119,8 @@
       "phone": "123455",
       "email": "leon@gmail.com",
       "bio": "El mejor prota",
-      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlIl4DLipzQfzc3kV1FsVc2TMUL-7h2pNJAA&s"
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlIl4DLipzQfzc3kV1FsVc2TMUL-7h2pNJAA&s",
+      "delipoints": 52
     },
     {
       "id": "1774245349518",
@@ -474,5 +477,19 @@
       "status": "confirmed"
     }
   ],
-  "reservations": []
+  "reservations": [
+    {
+      "id": "1774287141730",
+      "userId": "1774242403733",
+      "restaurantId": "1774141606946",
+      "restaurantName": "La piazza",
+      "date": "2026-03-25",
+      "time": "08:00",
+      "guests": 2,
+      "reservationName": "Leon Sabroso K",
+      "zone": "Terraza",
+      "timestamp": "2026-03-23T17:32:21.723Z",
+      "status": "confirmed"
+    }
+  ]
 }
