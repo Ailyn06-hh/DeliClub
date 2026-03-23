@@ -37,7 +37,8 @@ async function loadViews() {
     'views/restaurant-details.html',
     'views/partner-orders.html',
     'views/menu-activo.html',
-    'views/agregar-menu.html'
+    'views/agregar-menu.html',
+    'views/consultas-menu.html'
   ];
   
   for (const file of viewFiles) {
@@ -67,6 +68,7 @@ import { openReservations, resChangeQty, resCalRender, resCalPrev, resCalNext, r
 import { renderRestaurantDetails, saveRestaurantSchedule } from './restaurant-details.js';
 import { openPartnerOrders, closePartnerOrders, filterPartnerOrders, acceptOrder, rejectOrder } from './partner-orders.js';
 import { openAgregarMenu, amUpdateSolConversion, amUpdateStatusLabel, amDiscardDraft, amSubmitForm, amPreviewImage } from './agregar-menu.js';
+import { openConsultasMenu } from './consultas-menu.js';
 
 // Restaurant Details logic
 export function openRestaurantDetails(id) {
@@ -191,6 +193,9 @@ window.amUpdateStatusLabel = amUpdateStatusLabel;
 window.amDiscardDraft = amDiscardDraft;
 window.amSubmitForm = amSubmitForm;
 window.amPreviewImage = amPreviewImage;
+
+// Consultas Menu
+window.openConsultasMenu = openConsultasMenu;
 
 
 window.openReservations = openReservations;

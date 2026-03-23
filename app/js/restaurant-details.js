@@ -76,7 +76,9 @@ export async function renderRestaurantDetails(id) {
       tokens += 10; // For instance, mock logic: 10 tokens per order
     });
     
-    document.getElementById('rd-tokens-awarded').innerText = `${tokens} Tokens`;
+    const tokensEl = document.getElementById('rd-tokens-awarded');
+    if (tokensEl) tokensEl.innerText = `${tokens} Tokens`;
+    
     const dpMxn = document.getElementById('rd-delipoints-mxn');
     const dpSol = document.getElementById('rd-delipoints-sol');
     if(dpMxn) dpMxn.innerText = `$${delipoints.toFixed(2)} MXN`;
@@ -98,19 +100,22 @@ function renderScheduleInputs(schedule) {
   if (!container) return;
 
   container.innerHTML = days.map(d => {
+    // Default to checked=false if undefined, openTime 10:00 am, closeTime 8:00 pm (20:00)
     const isChecked = schedule && schedule[d] && schedule[d].open;
     const openTime = schedule && schedule[d] && schedule[d].start ? schedule[d].start : '10:00';
     const closeTime = schedule && schedule[d] && schedule[d].end ? schedule[d].end : '20:00';
     
     return `
-      <div class="rd-schedule-item rd-flex-center" style="margin-bottom: 8px;">
-        <label style="display: flex; align-items: center; gap: 8px; width: 110px; font-weight: 700; font-size: 14px; color: #555;">
-          <input type="checkbox" id="sch-chk-${d}" ${isChecked ? 'checked' : ''} style="width: auto; margin: 0; transform: scale(1.2);">
+      <div class="rd-schedule-item" style="display: flex; align-items: center; justify-content: flex-start; margin-bottom: 15px;">
+        <label class="sch-day-label" style="display: flex; align-items: center; gap: 12px; width: 110px; cursor: pointer;">
+          <input type="checkbox" id="sch-chk-${d}" ${isChecked ? 'checked' : ''} style="width: 20px; height: 20px; margin: 0; accent-color: #000; cursor: pointer;">
           ${d}
         </label>
-        <input type="time" id="sch-start-${d}" value="${openTime}" style="padding: 6px; border-radius: 6px; border: 1px solid #ccc; font-size: 13px; margin: 0; width: auto; font-family: inherit;">
-        <span style="font-size: 13px; color: #555; margin: 0 4px;">a</span>
-        <input type="time" id="sch-end-${d}" value="${closeTime}" style="padding: 6px; border-radius: 6px; border: 1px solid #ccc; font-size: 13px; margin: 0; width: auto; font-family: inherit;">
+        <div style="display: flex; align-items: center;">
+          <input type="time" id="sch-start-${d}" value="${openTime}" class="sch-time-input">
+          <span class="sch-time-divider">a</span>
+          <input type="time" id="sch-end-${d}" value="${closeTime}" class="sch-time-input">
+        </div>
       </div>
     `;
   }).join('');

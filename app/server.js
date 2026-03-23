@@ -246,6 +246,85 @@ app.get('/api/restaurants/:id/menu', async (req, res) => {
   });
 });
 
+app.post('/api/menu', async (req, res) => {
+  const { restaurantId, name, desc, category, priceMXN, priceSOL, status, image } = req.body;
+  if (!restaurantId || !name) return res.status(400).json({ error: 'Datos incompletos' });
+
+  await db.read();
+  const rest = db.data.restaurants.find(r => r.id === restaurantId || r.ownerId === restaurantId);
+  if (!rest) return res.status(404).json({ error: 'Restaurante no encontrado' });
+
+  const newItem = {
+    id: Date.now().toString(),
+    name,
+    desc: desc || '',
+    category: category || '',
+    priceMXN: parseFloat(priceMXN) || 0,
+    priceSOL: parseFloat(priceSOL) || 0,
+    status: status !== false,
+    image: image || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&q=80"
+  };
+
+  if (!rest.menu) rest.menu = [];
+  
+  const targetCategoryNames = category ? category.split(',').map(c => c.trim()) : ['Sin categoría'];
+  
+  for (const catName of targetCategoryNames) {
+    let catObj = rest.menu.find(c => c.name.toLowerCase() === catName.toLowerCase());
+    if (!catObj) {
+      catObj = { name: catName, catImg: newItem.image, items: [] };
+      rest.menu.push(catObj);
+    }
+    catObj.items.push({
+      id: newItem.id,
+      name: newItem.name,
+      desc: newItem.desc,
+      price: newItem.priceMXN, // For legacy discovery.js 
+      priceMXN: newItem.priceMXN,
+      priceSOL: newItem.priceSOL,
+      itemImg: newItem.image,
+      status: newItem.status
+    });
+  }
+  
+  await db.write();
+  res.json({ success: true, item: newItem });
+});
+
+app.get('/api/menu', async (req, res) => {
+  const { restaurantId } = req.query;
+  await db.read();
+  let items = [];
+  
+  const processMenu = (menuArr) => {
+    menuArr.forEach(cat => {
+      cat.items.forEach(it => {
+        items.push({
+          id: it.id,
+          name: it.name,
+          desc: it.desc,
+          category: cat.name,
+          priceMXN: it.priceMXN || it.price,
+          priceSOL: it.priceSOL,
+          image: it.itemImg
+        });
+      });
+    });
+  };
+
+  if (restaurantId) {
+    const rest = db.data.restaurants.find(r => r.id === restaurantId || r.ownerId === restaurantId);
+    if (rest && rest.menu) processMenu(rest.menu);
+  } else {
+    db.data.restaurants.forEach(r => {
+      if (r.menu) processMenu(r.menu);
+    });
+  }
+  
+  const uniqueItems = Array.from(new Map(items.map(item => [item.id, item])).values());
+  res.json(uniqueItems);
+});
+
 // --- RESERVATIONS ---
 app.post('/api/reservations', async (req, res) => {
   const { userId, restaurantId, restaurantName, date, time, guests, reservationName, zone, timestamp } = req.body;

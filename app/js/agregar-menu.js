@@ -70,29 +70,48 @@ export function amDiscardDraft() {
 
 export async function amSubmitForm() {
   const session = getSession();
-  if (!session) return alert("No iniciaste sesión");
+  if (!session) {
+    alert("No has iniciado sesión o la sesión expiró.");
+    return;
+  }
 
   const name = document.getElementById('am-name').value.trim();
   const desc = document.getElementById('am-desc').value.trim();
   
+  // Collect categories
   const categoryCbs = document.querySelectorAll('.am-cat-cb:checked');
-  const category = Array.from(categoryCbs).map(cb => cb.value).join(', ');
-  
-  const price = parseFloat(document.getElementById('am-price-mxn').value) || 0;
-  const isActive = document.getElementById('am-status-select').value === 'true';
+  const catNames = Array.from(categoryCbs).map(cb => cb.value.trim()).filter(val => val);
+  const categoryStr = catNames.length > 0 ? catNames.join(', ') : '';
 
-  if (!name || isNaN(price) || price <= 0) {
-    alert("Por favor completa el nombre y un precio válido.");
+  const priceMXNRaw = document.getElementById('am-price-mxn').value;
+  const priceMXN = parseFloat(priceMXNRaw) || 0;
+  const priceSOLText = document.getElementById('am-price-sol').innerText;
+  const priceSOL = parseFloat(priceSOLText.replace(/[^0-9.]/g, '')) || 0;
+
+  const statusVal = document.getElementById('am-status-select').value;
+  const isActive = statusVal === 'true';
+
+  if (!name || priceMXN <= 0 || !categoryStr) {
+    alert("Por favor completa el nombre del platillo, su precio base y selecciona al menos una categoría.");
     return;
   }
 
+  // Get image src from preview if possible
+  const preview = document.getElementById('am-image-preview');
+  let image = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&q=80"; // Default image fallback
+  if (preview && preview.src && preview.src.startsWith('data:')) {
+    image = preview.src; 
+  }
+
   const payload = {
+    restaurantId: session.id, // Or ownerId
     name,
-    description: desc,
-    category,
-    price,
-    isActive,
-    restaurantId: session.id // Or could map to specific branch if the partner has multiple, but we'll use session id for simplicity
+    desc,
+    category: categoryStr,
+    priceMXN,
+    priceSOL,
+    status: isActive,
+    image
   };
 
   try {
@@ -103,13 +122,16 @@ export async function amSubmitForm() {
     });
 
     if (res.ok) {
-      alert("Platillo creado exitosamente!");
-      window.backToMenuActivo();
+      alert("¡Platillo creado y guardado exitosamente!");
+      amDiscardDraft();
+      // Redirect to Consultas Menu so user can see what they just added
+      if (window.openConsultasMenu) window.openConsultasMenu();
     } else {
-      alert("Error al crear platillo");
+      const errData = await res.json();
+      alert("Error al guardar en el servidor: " + (errData.error || 'Desconocido'));
     }
   } catch (e) {
     console.error(e);
-    alert("Error de conexión");
+    alert("Error de conexión al servidor");
   }
 }
