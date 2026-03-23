@@ -245,6 +245,14 @@ function renderCalGrid(year, month) {
 }
 
 // ── Purchase History ────────────────────────────────────────────
+let showAllPurchases = false;
+
+export function toggleAllPurchases() {
+  showAllPurchases = !showAllPurchases;
+  const session = getSession();
+  if (session) loadPurchaseHistory(session);
+}
+
 async function loadPurchaseHistory(session) {
   const container = document.getElementById('profile-purchases-list');
   if (!container) return;
@@ -271,7 +279,19 @@ async function loadPurchaseHistory(session) {
 
   let totalHistoricalPoints = 0;
 
-  container.innerHTML = purchases.map(p => {
+  // Calculate total points from ALL purchases
+  for (const p of purchases) {
+    const total = p.totalMXN || p.total || 0;
+    const earned = p.earnedDelipoints != null ? p.earnedDelipoints : Math.round(total * 0.05);
+    const used = p.usedDelipoints || 0;
+    totalHistoricalPoints += (earned - used);
+  }
+
+  // Limit display to 3 unless expanded
+  const visible = showAllPurchases ? purchases : purchases.slice(0, 3);
+  const hasMore = purchases.length > 3;
+
+  container.innerHTML = visible.map(p => {
     let dateStr = '—';
     const dateVal = p.timestamp || p.date;
     try {
@@ -290,8 +310,6 @@ async function loadPurchaseHistory(session) {
     const total = p.totalMXN || p.total || 0;
     const earned = p.earnedDelipoints != null ? p.earnedDelipoints : Math.round(total * 0.05);
     const used = p.usedDelipoints || 0;
-    
-    totalHistoricalPoints += (earned - used);
 
     return `
       <div class="purchase-card-new">
@@ -301,8 +319,19 @@ async function loadPurchaseHistory(session) {
         <div class="purchase-row-new">Fecha: ${dateStr}</div>
         <div class="purchase-row-new" style="color: var(--primary-color); font-weight: bold;">Delipoints ganados: 🎁 $${earned.toFixed(2)}</div>
         ${used > 0 ? `<div class="purchase-row-new" style="color: #8b5b3f;">Delipoints usados: -$${used.toFixed(2)}</div>` : ''}
+        ${p.status === 'accepted' ? '<div class="purchase-status-badge purchase-status-accepted">✓ Pedido Aceptado</div>' : ''}
+        ${p.status === 'rejected' ? '<div class="purchase-status-badge purchase-status-rejected">✗ Pedido Descartado' + (p.refundedAmount ? ' — Reembolso: $' + p.refundedAmount.toFixed(2) : '') + '</div>' : ''}
+        ${p.status === 'confirmed' ? '<div class="purchase-status-badge purchase-status-pending">⏳ Pendiente</div>' : ''}
       </div>`;
   }).join('');
+
+  // Add toggle button if more than 3
+  if (hasMore) {
+    container.innerHTML += `
+      <button class="btn-toggle-purchases" onclick="toggleAllPurchases()">
+        ${showAllPurchases ? 'Ver menos' : 'Ver todos los pedidos (' + purchases.length + ')'}
+      </button>`;
+  }
   
   if (totalHistoricalPoints !== session.delipoints) {
     session.delipoints = totalHistoricalPoints > 0 ? totalHistoricalPoints : 0;

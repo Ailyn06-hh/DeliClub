@@ -153,7 +153,7 @@
       "type": "Cliente",
       "password": "rin",
       "wallet": "ELiNFFjCvcfuEE1XZs3oQm7yL4yyqPPea2oy2jAdn2Qh",
-      "delipoints": 10,
+      "delipoints": 200,
       "phone": "12345",
       "email": "rinleon@gmail.com",
       "bio": "La esposa de Leon",
@@ -163,7 +163,7 @@
   "restaurants": [
     {
       "id": "1774141606946",
-      "ownerId": "1774141606946",
+      "ownerId": "1774245349518",
       "name": "La piazza",
       "desc": "Al cruzar la puerta, lo primero que te envuelve es el aroma embriagador de la albahaca fresca, el ajo dorado y el pan recién horneado. La atmósfera es cálida, iluminada por una luz tenue que rebota en botellas de vino de cristal verde dispuestas en las repisas de madera oscura.",
       "tags": "Italian",
@@ -415,7 +415,7 @@
       "totalSOL": 0.076,
       "txSignature": "4s4YjK8z2BK1G5EwHSxpiym2NUWP1EZZu3PHLhhWLHYhvWGAmkhW8qXYMmqjDpNnzjgUHNTL9ch2oMWpdr9vGv8R",
       "timestamp": "2026-03-23T06:04:16.852Z",
-      "status": "confirmed"
+      "status": "accepted"
     },
     {
       "id": "1774246194342",
@@ -458,7 +458,8 @@
       "totalSOL": 0.088,
       "txSignature": "eKdy7FmDKhrWp6uPrpdCsDhe2gzh7oLDMqjy4TBpN11XxdDDFLV6428zodQci5GN9WyJrmyFN5WoQA8gCdiZFyQ",
       "timestamp": "2026-03-23T07:36:27.366Z",
-      "status": "confirmed"
+      "status": "rejected",
+      "refundedAmount": 220
     },
     {
       "id": "1774253766905",
@@ -477,7 +478,7 @@
       "totalSOL": 0.076,
       "txSignature": "5ob4X5iJ7RPRYPjF2ghdDBoPp62d7PJd25xYEN8N64YFt3xpxTPqweiyLE9pLdAShPn9S38BTuxFGiPi6D7Ynv2g",
       "timestamp": "2026-03-23T08:16:06.905Z",
-      "status": "confirmed"
+      "status": "accepted"
     },
     {
       "id": "1774255977918",
@@ -515,7 +516,7 @@
       "totalSOL": 0.076,
       "txSignature": "Xyhm4rJ3SwtP71bBMBamVRBAHEPHyzMtQ6hGSRs6KAjkjM7ShAwbMDWp2bmo92c2d3MzeBWJqb89LGyxYAF1oX4",
       "timestamp": "2026-03-23T15:03:49.621Z",
-      "status": "confirmed"
+      "status": "accepted"
     },
     {
       "id": "1774291530974",
@@ -536,7 +537,8 @@
       "earnedDelipoints": 10,
       "usedDelipoints": 0,
       "timestamp": "2026-03-23T18:45:30.974Z",
-      "status": "confirmed"
+      "status": "rejected",
+      "refundedAmount": 190
     }
   ],
   "reservations": [

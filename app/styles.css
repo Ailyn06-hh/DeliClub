@@ -685,3 +685,134 @@ input:checked + .rd-slider:before { transform: translateX(20px); }
 .rd-reward-label { font-size: 13px; color: #666; font-weight: 600; margin-bottom: 8px; }
 .rd-reward-value { font-size: 18px; font-weight: 800; color: #000; }
 .rd-reward-divider { width: 1px; height: 40px; background-color: #ccc; }
+
+/* ========== PARTNER ORDERS SCREEN ========== */
+.po-tabs {
+  display: flex; gap: 8px; margin-bottom: 20px;
+}
+.po-tab {
+  flex: 1; padding: 12px 8px; border: none; border-radius: 14px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  background: #e8ddd4; color: #8b7b6b;
+  transition: all 0.25s ease;
+}
+.po-tab.active {
+  background: var(--secondary-color); color: white;
+  box-shadow: 0 4px 12px rgba(127, 85, 57, 0.3);
+}
+.po-tab:hover:not(.active) { background: #ddd0c4; }
+
+/* Order Card */
+.po-order-card {
+  background: #fdfaf6; border-radius: 22px; padding: 22px 20px;
+  margin-bottom: 18px; box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+  border: 1px solid #f0e8df;
+  animation: poCardIn 0.3s ease;
+}
+@keyframes poCardIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.po-order-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 14px;
+}
+.po-order-title {
+  font-size: 20px; font-weight: 800; color: var(--text-color); margin: 0;
+}
+.po-order-num {
+  font-size: 14px; font-weight: 700; color: #a48168;
+  background: #f0e8df; padding: 4px 12px; border-radius: 10px;
+}
+
+/* Items */
+.po-items-section { margin-bottom: 12px; }
+.po-item-row {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 15px; font-weight: 700; color: var(--text-color);
+  padding: 4px 0;
+}
+.po-item-qty { color: var(--secondary-color); font-weight: 800; min-width: 30px; }
+.po-item-name { flex: 1; }
+.po-item-price { color: #a48168; font-weight: 600; }
+
+.po-order-total {
+  font-size: 17px; font-weight: 800; color: #000; margin-bottom: 4px;
+}
+.po-order-date {
+  font-size: 13px; font-weight: 600; color: #a48168; margin-bottom: 12px;
+}
+
+.po-divider {
+  border: none; border-top: 1px solid #e8ddd4; margin: 12px 0;
+}
+
+/* Client info */
+.po-client-info { margin-bottom: 10px; }
+.po-client-row {
+  font-size: 14px; font-weight: 600; color: var(--text-color);
+  margin-bottom: 6px;
+}
+.po-client-row strong { font-weight: 800; }
+
+/* NEW badge */
+.po-new-badge {
+  text-align: center; color: #c97948; font-size: 22px; font-weight: 900;
+  letter-spacing: 2px; padding: 10px 0 6px;
+}
+
+/* Action buttons */
+.po-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+.po-btn-accept {
+  width: 100%; padding: 14px; background: var(--secondary-color); color: white;
+  border: none; border-radius: 30px; font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(127, 85, 57, 0.25);
+}
+.po-btn-accept:hover { background: #5e3a20; transform: translateY(-1px); }
+.po-btn-reject {
+  width: 100%; padding: 12px; background: transparent; color: #c0392b;
+  border: 2px solid #e07070; border-radius: 30px; font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
+}
+.po-btn-reject:hover { background: #fdf0ee; }
+
+/* Status badges (in partner orders) */
+.po-status-badge {
+  text-align: center; padding: 12px; border-radius: 14px;
+  font-size: 15px; font-weight: 800; margin-top: 12px;
+}
+.po-status-accepted { background: #e8f5e9; color: #2e7d32; }
+.po-status-rejected { background: #fdecea; color: #c0392b; }
+.po-refund-note {
+  text-align: center; font-size: 13px; font-weight: 700;
+  color: #e67e22; margin-top: 6px;
+}
+
+/* Empty state */
+.po-empty {
+  text-align: center; color: #999; padding: 40px 20px;
+  font-size: 16px; font-weight: 600;
+}
+
+/* ========== PURCHASE STATUS BADGES (Client Profile) ========== */
+.purchase-status-badge {
+  margin-top: 10px; padding: 8px 14px; border-radius: 10px;
+  font-size: 13px; font-weight: 800; text-align: center;
+}
+.purchase-status-accepted { background: #e8f5e9; color: #2e7d32; }
+.purchase-status-rejected { background: #fdecea; color: #c0392b; }
+.purchase-status-pending { background: #fff8e1; color: #f57f17; }
+
+/* Toggle purchases button */
+.btn-toggle-purchases {
+  display: block; width: 100%; padding: 14px; margin-top: 12px;
+  background: transparent; color: var(--secondary-color);
+  border: 2px solid var(--secondary-color); border-radius: 14px;
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-toggle-purchases:hover {
+  background: var(--secondary-color); color: white;
+}
+
