@@ -40,7 +40,8 @@ app.post('/api/register', async (req, res) => {
     name,
     type,
     password: name.toLowerCase(),
-    wallet: wallet || ''
+    wallet: wallet || '',
+    delipoints: 0
   };
 
   if (type === 'Cliente') {
@@ -72,7 +73,7 @@ app.post('/api/register', async (req, res) => {
     });
   }
   await db.write();
-  res.json({ user: { id: user.id, name: user.name, type: user.type, wallet: user.wallet, bio: user.bio || '', avatar: user.avatar || '' } });
+  res.json({ user: { id: user.id, name: user.name, type: user.type, wallet: user.wallet, bio: user.bio || '', avatar: user.avatar || '', delipoints: user.delipoints || 0 } });
 });
 
 // --- Update wallet ---
@@ -126,14 +127,28 @@ app.post('/api/login', async (req, res) => {
   if (!name) return res.status(400).json({ error: 'Nombre requerido' });
   
   // Hardcoded test accounts
-  if (name.toLowerCase() === 'cliente' && password === 'prueba')
-    return res.json({ user: { id: 'test-client', name: 'Cliente', type: 'Cliente', wallet: '', bio: '', avatar: '' } });
-  if (name.toLowerCase() === 'partner' && password === 'pruebap')
-    return res.json({ user: { id: 'test-partner', name: 'Partner', type: 'Partner', wallet: '', bio: '', avatar: '' } });
+  let user = db.data.users.find(u => u.name.toLowerCase() === name.toLowerCase() && u.password === password);
   
-  const user = db.data.users.find(u => u.name.toLowerCase() === name.toLowerCase() && u.password === password);
+  if (!user && name.toLowerCase() === 'cliente' && password === 'prueba') {
+    user = db.data.users.find(u => u.id === 'test-client');
+    if(!user) {
+      user = { id: 'test-client', name: 'Cliente', type: 'Cliente', password: 'prueba', wallet: '', bio: '', avatar: '', delipoints: 0 };
+      db.data.users.push(user);
+      await db.write();
+    }
+  }
+
+  if (!user && name.toLowerCase() === 'partner' && password === 'pruebap') {
+    user = db.data.users.find(u => u.id === 'test-partner');
+    if(!user) {
+       user = { id: 'test-partner', name: 'Partner', type: 'Partner', password: 'pruebap', wallet: '', bio: '', avatar: '', delipoints: 0 };
+       db.data.users.push(user);
+       await db.write();
+    }
+  }
+  
   if (!user) return res.status(401).json({ error: 'Credenciales inválidas' });
-  res.json({ user: { id: user.id, name: user.name, type: user.type, wallet: user.wallet || '', bio: user.bio || '', avatar: user.avatar || '' } });
+  res.json({ user: { id: user.id, name: user.name, type: user.type, wallet: user.wallet || '', bio: user.bio || '', avatar: user.avatar || '', delipoints: user.delipoints || 0 } });
 });
 
 // --- RESTAURANTS ---
@@ -193,12 +208,23 @@ app.get('/api/restaurants/:id/menu', async (req, res) => {
 
 // --- ORDERS ---
 app.post('/api/orders', async (req, res) => {
-  const { clientId, clientName, restaurantId, restaurantName, items, totalMXN, totalSOL, txSignature } = req.body;
+  const { clientId, clientName, restaurantId, restaurantName, items, totalMXN, totalSOL, txSignature, earnedDelipoints, usedDelipoints } = req.body;
   if (!clientId || !restaurantId || !txSignature) {
     return res.status(400).json({ error: 'Datos incompletos' });
   }
   
   await db.read();
+  
+  const earned = earnedDelipoints || 0;
+  const used = usedDelipoints || 0;
+
+  const user = db.data.users.find(u => u.id === clientId);
+  let newBalance = 0;
+  if (user) {
+    user.delipoints = (user.delipoints || 0) + earned - used;
+    newBalance = user.delipoints;
+  }
+  
   const order = {
     id: Date.now().toString(),
     clientId,
@@ -209,13 +235,15 @@ app.post('/api/orders', async (req, res) => {
     totalMXN: totalMXN || 0,
     totalSOL: totalSOL || 0,
     txSignature,
+    earnedDelipoints: earned,
+    usedDelipoints: used,
     timestamp: new Date().toISOString(),
     status: 'confirmed'
   };
   
   db.data.orders.push(order);
   await db.write();
-  res.json(order);
+  res.json({ order, newBalance });
 });
 
 app.get('/api/orders', async (req, res) => {

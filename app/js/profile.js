@@ -274,7 +274,8 @@ async function loadPurchaseHistory(session) {
       : '';
 
     const total = p.totalMXN || p.total || 0;
-    const points = p.delipoints != null ? p.delipoints : Math.round(total * 0.05);
+    const earned = p.earnedDelipoints != null ? p.earnedDelipoints : Math.round(total * 0.05);
+    const used = p.usedDelipoints || 0;
 
     return `
       <div class="purchase-card-new">
@@ -282,7 +283,8 @@ async function loadPurchaseHistory(session) {
         ${itemsHtml ? `<div class="purchase-row-new" style="color: #555; font-size: 13px; margin-bottom: 6px;">Productos: ${itemsHtml}</div>` : ''}
         <div class="purchase-row-new">Total: $${total.toFixed(2)}</div>
         <div class="purchase-row-new">Fecha: ${dateStr}</div>
-        <div class="purchase-row-new">Recompensa obtenida: $${points.toFixed(2)}</div>
+        <div class="purchase-row-new" style="color: var(--primary-color); font-weight: bold;">Delipoints ganados: 🎁 $${earned.toFixed(2)}</div>
+        ${used > 0 ? `<div class="purchase-row-new" style="color: #8b5b3f;">Delipoints usados: -$${used.toFixed(2)}</div>` : ''}
       </div>`;
   }).join('');
 }

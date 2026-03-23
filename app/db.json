@@ -419,6 +419,25 @@
       "txSignature": "4KxaGknzW31LXhgdaFdb7RctxXRipUt6kvBiqnHjzyLXpQwLg5NRxyViFkP9bvvULBtddUo5myJ2CAyA8cd17RcJ",
       "timestamp": "2026-03-23T08:52:57.918Z",
       "status": "confirmed"
+    },
+    {
+      "id": "1774278229620",
+      "clientId": "1774242403733",
+      "clientName": "Leon Sabroso K",
+      "restaurantId": "1774141606946",
+      "restaurantName": "La piazza",
+      "items": [
+        {
+          "name": "Uova en Purgatorio",
+          "price": "190.0",
+          "qty": 1
+        }
+      ],
+      "totalMXN": 190,
+      "totalSOL": 0.076,
+      "txSignature": "Xyhm4rJ3SwtP71bBMBamVRBAHEPHyzMtQ6hGSRs6KAjkjM7ShAwbMDWp2bmo92c2d3MzeBWJqb89LGyxYAF1oX4",
+      "timestamp": "2026-03-23T15:03:49.621Z",
+      "status": "confirmed"
     }
   ]
 }
