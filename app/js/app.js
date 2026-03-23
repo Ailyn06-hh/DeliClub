@@ -35,7 +35,8 @@ async function loadViews() {
     'views/reservations.html',
     'views/user-reservations.html',
     'views/restaurant-details.html',
-    'views/reservaciones-clicli.html'
+    'views/reservaciones-clicli.html',
+    'views/menu-activo.html'
   ];
   
   for (const file of viewFiles) {
@@ -69,11 +70,21 @@ import { openReservacionesClicli } from './reservaciones-clicli.js';
 export function openRestaurantDetails(id) {
   showScreen('screen-restaurant-details');
   if(id) {
-    renderRestaurantDetails(id);
+    if(typeof window.renderRestaurantDetails === 'function') {
+        window.renderRestaurantDetails(id);
+    }
   }
 }
 export function backToSucursales() {
   showScreen('screen-sucursales');
+}
+
+// Menu Activo Logic
+export function openMenuActivo() {
+  showScreen('screen-menu-activo');
+}
+export function backToRestaurantDetails() {
+  showScreen('screen-restaurant-details');
 }
 
 
@@ -160,6 +171,8 @@ window.openRestaurantDetails = openRestaurantDetails;
 window.backToSucursales = backToSucursales;
 window.saveRestaurantSchedule = saveRestaurantSchedule;
 window.openReservacionesClicli = openReservacionesClicli;
+window.openMenuActivo = openMenuActivo;
+window.backToRestaurantDetails = backToRestaurantDetails;
 
 
 window.openReservations = openReservations;

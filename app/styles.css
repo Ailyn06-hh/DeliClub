@@ -719,3 +719,29 @@ input:checked + .rd-slider:before { transform: translateX(20px); }
   text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff;
   letter-spacing: 0.5px;
 }
+
+/* ========== MENU ACTIVO VIEW ========== */
+.menu-activo-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 20px;
+  margin-top: 20px;
+}
+.btn-menu-activo {
+  background: #c89f82; /* Light brown / cafecito clarito */
+  color: white;
+  border: none;
+  border-radius: 30px; /* Capsule */
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(200, 159, 130, 0.3);
+  transition: transform 0.2s, background 0.2s;
+}
+.btn-menu-activo:hover {
+  transform: translateY(-2px);
+  background: #b08968;
+}
