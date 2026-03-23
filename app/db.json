@@ -11,7 +11,10 @@
       "name": "Comecome",
       "type": "Partner",
       "password": "comecome",
-      "delipoints": 0
+      "delipoints": 0,
+      "bio": "",
+      "avatar": "https://ih1.redbubble.net/image.1667544594.3885/raf,360x360,075,t,fafafa:ca443f4786.u1.jpg",
+      "wallet": ""
     },
     {
       "id": "1774143774079",
