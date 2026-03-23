@@ -56,7 +56,6 @@ import { addToCart, removeFromCart, updateCartUI, showCart, payWithSOL, clearCar
 import { renderDiscovery, viewMenu, viewCategory, showAddedBadge, filterMenuItems, filterByCategory, searchRestaurants, backToDiscovery } from './discovery.js';
 import { renderSchedule, syncSchedule, addCategory, addItem, renderPartnerMenu, savePartnerInfo, setPartnerMenu, partnerMenu } from './partner.js';
 import { createCampaign, fetchCampaigns, donate } from './solana.js';
-import { openProfile, closeProfile, profileCalRender, profileCalPrev, profileCalNext, confirmLogout, openEditProfile, closeEditProfile, saveProfileChanges } from './profile.js';
 import { renderRestaurantDashboard, showTrendsModal, closeTrendsModal } from './restaurant-dashboard.js';
 import { openSucursales, backToRestaurantDashboard, searchSucursales, createNewSucursal } from './sucursales.js';
 import { openCrearSucursal, submitNuevaSucursal } from './crear-sucursal.js';
