@@ -264,6 +264,15 @@
           "tags": "Comida mexicana",
           "img": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80",
           "isActive": true
+        },
+        {
+          "id": "1774311249571",
+          "name": "nnn",
+          "desc": "nnnn",
+          "price": 5,
+          "tags": "Comida mediterránea",
+          "img": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80",
+          "isActive": true
         }
       ],
       "schedule": {},
