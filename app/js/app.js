@@ -3,7 +3,7 @@
 export const API = '';
 export const SOL_RATE = 2500; // 1 SOL ≈ 2500 MXN
 export const days = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
-export const programIdStr = "D6E6bhYFzxJfmpKZAyxHpv9k7faX7ETUQDfYT7wj9KtJ";
+export const programIdStr = "4jHTMw2BBbCUVhJn1qf7yLGu2w1yn3eALY4nRqN9UiE5";
 
 // ========== UTILITY ==========
 export function getSession() { 

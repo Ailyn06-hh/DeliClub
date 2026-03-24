@@ -14,7 +14,7 @@ import { DeliClub } from "./target/types/deli_club";
 //  3. El cliente comprando comida y ganando Delipoints (Cashback).
 // ──────────────────────────────────────────────────────────
 
-const PROGRAM_ID = new PublicKey("D6E6bhYFzxJfmpKZAyxHpv9k7faX7ETUQDfYT7wj9KtJ");
+const PROGRAM_ID = new PublicKey("4jHTMw2BBbCUVhJn1qf7yLGu2w1yn3eALY4nRqN9UiE5");
 
 async function main() {
   // ── Configuración inicial ──

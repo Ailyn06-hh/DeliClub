@@ -6,7 +6,7 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-deli_club = "D6E6bhYFzxJfmpKZAyxHpv9k7faX7ETUQDfYT7wj9KtJ"
+micro_donations_link = "4jHTMw2BBbCUVhJn1qf7yLGu2w1yn3eALY4nRqN9UiE5"
 
 [registry]
 url = "https://api.apr.dev"
