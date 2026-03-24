@@ -1,12 +1,12 @@
 [package]
-name = "micro-donations-link"
+name = "deli-club"
 version = "0.1.0"
-description = "Created with Anchor"
+description = "DeliClub - Sistema de pagos y recompensas para restaurantes en Solana"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "micro_donations_link"
+name = "deli_club"
 
 [features]
 default = []
