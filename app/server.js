@@ -326,6 +326,66 @@ app.get('/api/menu', async (req, res) => {
   res.json(uniqueItems);
 });
 
+// --- DELETE MENU ITEM ---
+app.delete('/api/menu/:itemId', async (req, res) => {
+  const { restaurantId } = req.query;
+  if (!restaurantId) return res.status(400).json({ error: 'restaurantId requerido' });
+
+  await db.read();
+  const rest = db.data.restaurants.find(r => r.id === restaurantId || r.ownerId === restaurantId);
+  if (!rest) return res.status(404).json({ error: 'Restaurante no encontrado' });
+
+  if (!rest.menu) return res.status(404).json({ error: 'No hay menú' });
+
+  let found = false;
+  for (const cat of rest.menu) {
+    if (!cat.items) continue;
+    const idx = cat.items.findIndex(it => it.id === req.params.itemId);
+    if (idx > -1) {
+      cat.items.splice(idx, 1);
+      found = true;
+    }
+  }
+  // Remove empty categories
+  rest.menu = rest.menu.filter(cat => cat.items && cat.items.length > 0);
+
+  if (!found) return res.status(404).json({ error: 'Platillo no encontrado' });
+
+  await db.write();
+  res.json({ success: true });
+});
+
+// --- UPDATE MENU ITEM ---
+app.put('/api/menu/:itemId', async (req, res) => {
+  const { restaurantId, name, desc, priceMXN, priceSOL, image } = req.body;
+  if (!restaurantId) return res.status(400).json({ error: 'restaurantId requerido' });
+
+  await db.read();
+  const rest = db.data.restaurants.find(r => r.id === restaurantId || r.ownerId === restaurantId);
+  if (!rest) return res.status(404).json({ error: 'Restaurante no encontrado' });
+
+  if (!rest.menu) return res.status(404).json({ error: 'No hay menú' });
+
+  let found = false;
+  for (const cat of rest.menu) {
+    if (!cat.items) continue;
+    const item = cat.items.find(it => it.id === req.params.itemId);
+    if (item) {
+      found = true;
+      if (name !== undefined) item.name = name;
+      if (desc !== undefined) item.desc = desc;
+      if (priceMXN !== undefined) { item.priceMXN = parseFloat(priceMXN); item.price = parseFloat(priceMXN); }
+      if (priceSOL !== undefined) item.priceSOL = parseFloat(priceSOL);
+      if (image !== undefined) item.itemImg = image;
+    }
+  }
+
+  if (!found) return res.status(404).json({ error: 'Platillo no encontrado' });
+
+  await db.write();
+  res.json({ success: true });
+});
+
 // --- RESERVATIONS ---
 app.post('/api/reservations', async (req, res) => {
   const { userId, restaurantId, restaurantName, date, time, guests, reservationName, zone, timestamp } = req.body;

@@ -38,7 +38,8 @@ async function loadViews() {
     'views/partner-orders.html',
     'views/menu-activo.html',
     'views/agregar-menu.html',
-    'views/consultas-menu.html'
+    'views/consultas-menu.html',
+    'views/eliminar-editar-menu.html'
   ];
   
   for (const file of viewFiles) {
@@ -69,6 +70,7 @@ import { renderRestaurantDetails, saveRestaurantSchedule } from './restaurant-de
 import { openPartnerOrders, closePartnerOrders, filterPartnerOrders, acceptOrder, rejectOrder } from './partner-orders.js';
 import { openAgregarMenu, amUpdateSolConversion, amUpdateStatusLabel, amDiscardDraft, amSubmitForm, amPreviewImage } from './agregar-menu.js';
 import { openConsultasMenu } from './consultas-menu.js';
+import { openEliminarEditarMenu, setEliminarTab, deleteMenuItem, startEditItem, cancelEditItem, saveEditItem, emEditUpdateSol } from './eliminar-editar-menu.js';
 
 // Restaurant Details logic
 export function openRestaurantDetails(id) {
@@ -196,6 +198,15 @@ window.amPreviewImage = amPreviewImage;
 
 // Consultas Menu
 window.openConsultasMenu = openConsultasMenu;
+
+// Eliminar / Editar Menu
+window.openEliminarEditarMenu = openEliminarEditarMenu;
+window.setEliminarTab = setEliminarTab;
+window.deleteMenuItem = deleteMenuItem;
+window.startEditItem = startEditItem;
+window.cancelEditItem = cancelEditItem;
+window.saveEditItem = saveEditItem;
+window.emEditUpdateSol = emEditUpdateSol;
 
 
 window.openReservations = openReservations;
