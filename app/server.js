@@ -246,6 +246,38 @@ app.get('/api/restaurants/:id/menu', async (req, res) => {
   });
 });
 
+// --- MENU (PLATILLOS) ---
+app.post('/api/menu', async (req, res) => {
+  const { restaurantId, name, description, category, price, isActive } = req.body;
+  if (!restaurantId || !name || price === undefined) {
+    return res.status(400).json({ error: 'Datos incompletos para crear platillo' });
+  }
+
+  await db.read();
+  let rest = db.data.restaurants.find(r => r.id === restaurantId);
+  if (!rest) {
+    rest = db.data.restaurants.find(r => r.ownerId === restaurantId);
+  }
+
+  if (!rest) return res.status(404).json({ error: 'Restaurante no encontrado' });
+
+  const newItem = {
+    id: Date.now().toString(),
+    name,
+    desc: description || '',
+    price: Number(price) || 0,
+    tags: category || 'General',
+    img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80',
+    isActive: isActive !== false
+  };
+
+  if (!rest.menu) rest.menu = [];
+  rest.menu.push(newItem);
+
+  await db.write();
+  res.json({ success: true, item: newItem });
+});
+
 // --- RESERVATIONS ---
 app.post('/api/reservations', async (req, res) => {
   const { userId, restaurantId, restaurantName, date, time, guests, reservationName, zone, timestamp } = req.body;

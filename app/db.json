@@ -253,6 +253,15 @@
               "price": "35"
             }
           ]
+        },
+        {
+          "id": "1774309589929",
+          "name": "PAPATZUL",
+          "desc": "Papatzul",
+          "price": 21,
+          "tags": "Comida mexicana",
+          "img": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80",
+          "isActive": true
         }
       ],
       "schedule": {},
