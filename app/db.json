@@ -84,7 +84,8 @@
       "password": "prueba2",
       "wallet": "2Mj9M3RPq1NyQwx5CPmVEUGY3bVt8bpDiU6ZsmQrMe8m",
       "phone": "4491196896",
-      "email": "ahhomgkg@gmail.com"
+      "email": "ahhomgkg@gmail.com",
+      "delipoints": 0
     },
     {
       "id": "1774242048272",
@@ -160,6 +161,16 @@
       "email": "rinleon@gmail.com",
       "bio": "La esposa de Leon",
       "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPfSqabE5vdFpvYFfutQIMsvvvOCfRFwohgQ&s"
+    },
+    {
+      "id": "1774319754260",
+      "name": "edith",
+      "type": "Cliente",
+      "password": "edith",
+      "wallet": "2Mj9M3RPq1NyQwx5CPmVEUGY3bVt8bpDiU6ZsmQrMe8m",
+      "delipoints": 0,
+      "phone": "12345678",
+      "email": "aiy@gmail.com"
     }
   ],
   "restaurants": [
@@ -377,6 +388,22 @@
       "wallet": "ELiNFFjCvcfuEE1XZs3oQm7yL4yyqPPea2oy2jAdn2Qh",
       "rfc": "123",
       "address": "dcdfv"
+    },
+    {
+      "id": "1774320881082",
+      "ownerId": "1774245349518",
+      "name": "Zona Sur",
+      "desc": "",
+      "tags": "Francesa",
+      "rating": "5.0",
+      "img": "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80",
+      "status": "Abierto",
+      "menu": [],
+      "schedule": {},
+      "wallet": "",
+      "rfc": "1234567890",
+      "address": "Heroe Inmortal",
+      "address2": "154Ha"
     }
   ],
   "orders": [
@@ -517,7 +544,7 @@
       "totalSOL": 0.088,
       "txSignature": "4KxaGknzW31LXhgdaFdb7RctxXRipUt6kvBiqnHjzyLXpQwLg5NRxyViFkP9bvvULBtddUo5myJ2CAyA8cd17RcJ",
       "timestamp": "2026-03-23T08:52:57.918Z",
-      "status": "confirmed"
+      "status": "accepted"
     },
     {
       "id": "1774278229620",
@@ -599,6 +626,32 @@
       "reservationName": "rin",
       "zone": "Terraza",
       "timestamp": "2026-03-23T20:01:56.272Z",
+      "status": "confirmed"
+    },
+    {
+      "id": "1774320266451",
+      "userId": "1774241975612",
+      "restaurantId": "1774141606946",
+      "restaurantName": "La piazza",
+      "date": "2026-03-27",
+      "time": "11:00",
+      "guests": 3,
+      "reservationName": "prueba2",
+      "zone": "Interior",
+      "timestamp": "2026-03-24T02:44:26.441Z",
+      "status": "confirmed"
+    },
+    {
+      "id": "1774320981609",
+      "userId": "1774241975612",
+      "restaurantId": "1774141606946",
+      "restaurantName": "La piazza",
+      "date": "2026-03-27",
+      "time": "08:00",
+      "guests": 2,
+      "reservationName": "prueba2",
+      "zone": "Terraza",
+      "timestamp": "2026-03-24T02:56:21.601Z",
       "status": "confirmed"
     }
   ]
